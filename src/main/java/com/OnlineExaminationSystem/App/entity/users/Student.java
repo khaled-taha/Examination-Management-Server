@@ -21,7 +21,6 @@ public class Student extends User implements Serializable {
 
     @Range(min = 1, max = 4)
     @Column(name = "year")
-    @Year
     private byte year;
 
 

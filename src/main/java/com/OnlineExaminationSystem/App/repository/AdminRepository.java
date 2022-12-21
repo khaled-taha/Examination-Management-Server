@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     Optional<Admin> findAdminById(Long AdminId);
-    @Query(value = "SELECT i from Admin i where i.universityId <> :adminId",
+    @Query(value = "SELECT * from Admin  where universityId <> :adminId",
     nativeQuery = true)
     Optional<Admin> findAdminByUniversityId(@Param("adminId") Long AdminId);
 

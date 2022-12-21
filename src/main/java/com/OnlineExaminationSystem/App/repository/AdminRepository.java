@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.repository;
 import com.OnlineExaminationSystem.App.entity.users.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.Query;
 
 
@@ -11,8 +12,8 @@ import java.util.Optional;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     Optional<Admin> findAdminById(Long AdminId);
-    @Query(value = "SELECT i from Admin i where i.universityId != adminId")
-    Optional<Admin> findAdminByUniversityId(Long adminId);
+    @Query(value = "SELECT i from Admin i where i.universityId != :adminId")
+    Optional<Admin> findAdminByUniversityId(@Param("adminId") Long AdminId);
 
     void deleteById(Long AdminId);
 

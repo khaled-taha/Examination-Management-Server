@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     Optional<Admin> findAdminById(Long AdminId);
-    @Query(value = "SELECT i from Admin i where i.universityId != :AdminId")
-    Optional<Admin> findAdminByUniversityId(Long AdminId);
+    @Query(value = "SELECT i from Admin i where i.universityId != adminId")
+    Optional<Admin> findAdminByUniversityId(Long adminId);
 
     void deleteById(Long AdminId);
 

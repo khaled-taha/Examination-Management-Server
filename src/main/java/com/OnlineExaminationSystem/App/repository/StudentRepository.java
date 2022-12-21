@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
      Optional<Student> findStudentById(Long studentId);
-     Optional<Student> findStudentByUniversityIdContainingAndIdNot(Long universityId);
+     Optional<Student> findStudentByUniversityIdAndIdNot(Long id, Long universityId);
      void deleteById(Long studentId);
 
 

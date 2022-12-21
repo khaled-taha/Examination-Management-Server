@@ -41,7 +41,7 @@ public abstract class User implements Serializable {
     @Column(name = "universityId")
     @Positive
     @NotNull
-    private Long universityId;
+    private long universityId;
 
     @Column(name = "email", unique = true)
     @NotBlank

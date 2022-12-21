@@ -19,7 +19,7 @@ public class StudentService {
 
     public Student addAndUpdateStudent(Student student) {
 
-            if(this.userRepository.findUserByEmailContainingAndIdNot(student.getId(), student.getEmail()).isPresent())
+            if(this.userRepository.findUserByEmailContainingAndIdNot(student.getEmail(), student.getId()).isPresent())
                 throw new ApiException("Duplicate Email");
             else if(this.studentRepository.findStudentByUniversityIdAndIdNot(student.getId(), student.getUniversityId()).isPresent())
                 throw new ApiException("Duplicate UniversityId");

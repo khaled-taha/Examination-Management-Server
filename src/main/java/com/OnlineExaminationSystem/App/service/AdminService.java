@@ -20,9 +20,9 @@ public class AdminService {
 
     public Admin addAndUpdateAdmin(Admin admin) {
 
-            if(this.userRepository.findUserByEmail(admin.getId(), admin.getEmail()).isPresent())
+            if(this.userRepository.findUserByEmailContainingAndIdNot(admin.getId(), admin.getEmail()).isPresent())
                     throw new ApiException("Duplicate Email");
-            else if(this.adminRepository.findAdminByUniversityId(admin.getUniversityId()).isPresent())
+            else if(this.adminRepository.findAdminByUniversityIdContainingAndIdNot(admin.getUniversityId()).isPresent())
                 throw new ApiException("Duplicate UniversityId");
 
         this.adminRepository.save(admin);

@@ -22,7 +22,7 @@ public class AdminService {
 
             if(this.userRepository.findUserByEmailContainingAndIdNot(admin.getEmail(), admin.getId()).isPresent())
                     throw new ApiException("Duplicate Email");
-            else if(this.adminRepository.findAdminByUniversityIdContainingAndIdNot(admin.getId(), admin.getUniversityId()).isPresent())
+            else if(this.adminRepository.findAdminByUniversityIdContainingAndIdNot(admin.getUniversityId(), admin.getId()).isPresent())
                 throw new ApiException("Duplicate UniversityId");
 
         this.adminRepository.save(admin);

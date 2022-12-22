@@ -1,13 +1,16 @@
 package com.OnlineExaminationSystem.App.controller;
-
 import com.OnlineExaminationSystem.App.entity.users.Student;
+import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -34,14 +37,22 @@ public class StudentController {
             "Set the password with value (firstName + LastName + university id) by default." +
             "At the same time, you can set it manually.")
     @PostMapping(path = "/add")
-    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            FieldError fe = bindingResult.getFieldError();
+            throw new ApiException(fe.getField() + " : " + fe.getDefaultMessage());
+        }
         Student st = this.studentService.addAndUpdateStudent(student);
         return new ResponseEntity<>(st, HttpStatus.OK);
     }
 
     @Operation(summary = "To update a student in DB.")
     @PostMapping(path = "/update")
-    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> updateStudent(@Valid @RequestBody Student student, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            FieldError fe = bindingResult.getFieldError();
+            throw new ApiException(fe.getField() + " : " + fe.getDefaultMessage());
+        }
         Student st = this.studentService.addAndUpdateStudent(student);
         return new ResponseEntity<>(st, HttpStatus.OK);
     }

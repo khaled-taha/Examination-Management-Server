@@ -1,17 +1,14 @@
 package com.OnlineExaminationSystem.App.repository;
 
-import com.OnlineExaminationSystem.App.entity.users.Student;
+import com.OnlineExaminationSystem.App.entity.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-     Optional<Student> findStudentById(Long studentId);
-     Optional<Student> findStudentByUniversityIdAndIdNot(long universityId, long id);
+    Optional<User> findUserByEmailAndIdNot(String email, Long id);
 
-     void deleteById(Long studentId);
-     
 }

@@ -21,27 +21,27 @@ public class RoleController {
 
     @Operation(summary = "To get all roles from DB.")
     @GetMapping(path = "/getAll")
-    public ResponseEntity<List<Role>> getRoles() {
+    public ResponseEntity<List<Role>> getStudents() {
         return new ResponseEntity<>(this.roleService.getAllRoles(), HttpStatus.OK);
     }
 
     @Operation(summary = "To get a role from DB by id")
     @GetMapping(path = "/get/{id}")
-    public ResponseEntity<Role> getRoles(@PathVariable("id") int id) {
+    public ResponseEntity<Role> getStudent(@PathVariable("id") int id) {
         return new ResponseEntity<>(this.roleService.findRoleById(id), HttpStatus.OK);
     }
 
 
     @Operation(summary = "To add a role to DB. You will add without id key of JSON or set Id = 0")
     @PostMapping(path = "/add")
-    public ResponseEntity<Role> addRoles(@RequestBody Role role) {
+    public ResponseEntity<Role> addStudent(@RequestBody Role role) {
         Role ro =  this.roleService.addAndUpdateRole(role);
         return new ResponseEntity<>(ro, HttpStatus.OK);
     }
 
     @Operation(summary = "To update a role in DB.")
     @PostMapping(path = "/update")
-    public ResponseEntity<Role> updateRoles(@RequestBody Role role) {
+    public ResponseEntity<Role> updateStudent(@RequestBody Role role) {
         Role ro =  this.roleService.addAndUpdateRole(role);
         return new ResponseEntity<>(ro, HttpStatus.OK);
     }

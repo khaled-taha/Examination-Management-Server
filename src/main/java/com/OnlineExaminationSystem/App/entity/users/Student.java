@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "student", schema = "examinationsystem")
+@Table(name = "student", schema = "public")
 @NoArgsConstructor
 @Setter
 @Getter
@@ -21,7 +21,6 @@ public class Student extends User implements Serializable {
 
     @Range(min = 1, max = 4)
     @Column(name = "year")
-    @Year
     private byte year;
 
 

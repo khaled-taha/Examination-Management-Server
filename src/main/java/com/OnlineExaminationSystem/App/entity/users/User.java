@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user", schema = "examinationsystem")
+@Table(name = "user", schema = "public")
 @NoArgsConstructor
 @Setter
 @Getter
@@ -41,7 +41,7 @@ public abstract class User implements Serializable {
     @Column(name = "universityId")
     @Positive
     @NotNull
-    private Long universityId;
+    private long universityId;
 
     @Column(name = "email", unique = true)
     @NotBlank

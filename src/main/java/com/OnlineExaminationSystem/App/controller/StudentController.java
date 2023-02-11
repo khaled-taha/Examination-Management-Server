@@ -1,16 +1,14 @@
 package com.OnlineExaminationSystem.App.controller;
+
+import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
 import com.OnlineExaminationSystem.App.entity.users.Student;
-import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,31 +35,31 @@ public class StudentController {
             "Set the password with value (firstName + LastName + university id) by default." +
             "At the same time, you can set it manually.")
     @PostMapping(path = "/add")
-    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            FieldError fe = bindingResult.getFieldError();
-            throw new ApiException(fe.getField() + " : " + fe.getDefaultMessage());
-        }
+    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
         Student st = this.studentService.addAndUpdateStudent(student);
         return new ResponseEntity<>(st, HttpStatus.OK);
     }
 
     @Operation(summary = "To update a student in DB.")
     @PostMapping(path = "/update")
-    public ResponseEntity<Student> updateStudent(@Valid @RequestBody Student student, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            FieldError fe = bindingResult.getFieldError();
-            throw new ApiException(fe.getField() + " : " + fe.getDefaultMessage());
-        }
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         Student st = this.studentService.addAndUpdateStudent(student);
         return new ResponseEntity<>(st, HttpStatus.OK);
     }
 
     @Operation(summary = "To delete a student from DB by id")
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long studentId) {
+    public ResponseEntity<?> deleteStudent(@PathVariable("id") long studentId) {
         this.studentService.deleteById(studentId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    @Operation(summary = "To get All Attempts of the student by his id")
+    @GetMapping(path = "attempts")
+    public ResponseEntity<List<ExamAttempt>> getAllAttempts(@PathVariable("id") long id){
+        List<ExamAttempt> attempts = this.studentService.getAllAttempts(id);
+        return new ResponseEntity<>(attempts, HttpStatus.OK);
     }
 
 }

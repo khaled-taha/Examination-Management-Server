@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "role", schema = "public")
+@Table(name = "role", schema = "examinationsystem")
 @NoArgsConstructor
 @Setter
 @Getter

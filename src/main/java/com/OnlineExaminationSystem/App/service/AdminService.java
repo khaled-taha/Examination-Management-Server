@@ -18,13 +18,14 @@ public class AdminService {
     private final UserRepository userRepository;
 
 
-   public Admin addAndUpdateAdmin(Admin admin) {
+    public Admin addAndUpdateAdmin(Admin admin) {
 
-            if(this.userRepository.findUserByEmailAndIdNot(admin.getEmail(), admin.getId()).isPresent()) {
-                throw new ApiException("Duplicate Email");
-            }
-            else if(this.adminRepository.findAdminByUniversityIdAndIdNot(admin.getUniversityId(), admin.getId()).isPresent())
+        if (admin.getId() == 0) {
+            if(this.userRepository.findUserByEmail(admin.getEmail()).isPresent())
+                    throw new ApiException("Duplicate Email");
+            else if(this.adminRepository.findAdminByUniversityId(admin.getUniversityId()).isPresent())
                 throw new ApiException("Duplicate UniversityId");
+            }
 
         this.adminRepository.save(admin);
 

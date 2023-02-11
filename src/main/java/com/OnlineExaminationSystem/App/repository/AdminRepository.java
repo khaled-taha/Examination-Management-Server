@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     Optional<Admin> findAdminById(Long AdminId);
-    Optional<Admin> findAdminByUniversityIdAndIdNot(Long universityId, Long id);
+    Optional<Admin> findAdminByUniversityId(Long AdminId);
 
     void deleteById(Long AdminId);
 

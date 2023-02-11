@@ -1,9 +1,9 @@
 package com.OnlineExaminationSystem.App.service;
 
 
-import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
-import com.OnlineExaminationSystem.App.entity.Exam.ExamResult;
-import com.OnlineExaminationSystem.App.entity.Exam.StudentAnswer;
+import com.OnlineExaminationSystem.App.entity.exam.ExamAttempt;
+import com.OnlineExaminationSystem.App.entity.exam.ExamResult;
+import com.OnlineExaminationSystem.App.entity.exam.StudentAnswer;
 import com.OnlineExaminationSystem.App.repository.ExamAttemptRepository;
 import com.OnlineExaminationSystem.App.repository.ExamResultRepository;
 import com.OnlineExaminationSystem.App.repository.StudentAnswerRepository;

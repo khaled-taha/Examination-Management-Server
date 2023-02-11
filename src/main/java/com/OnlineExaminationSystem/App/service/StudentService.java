@@ -1,6 +1,6 @@
 package com.OnlineExaminationSystem.App.service;
 
-import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
+import com.OnlineExaminationSystem.App.entity.exam.ExamAttempt;
 import com.OnlineExaminationSystem.App.entity.users.Student;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.ExamAttemptRepository;

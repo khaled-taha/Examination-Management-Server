@@ -1,6 +1,6 @@
 package com.OnlineExaminationSystem.App.repository;
 
-import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
+import com.OnlineExaminationSystem.App.entity.exam.ExamAttempt;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

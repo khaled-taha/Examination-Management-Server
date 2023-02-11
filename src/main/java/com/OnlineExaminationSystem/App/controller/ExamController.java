@@ -1,6 +1,6 @@
 package com.OnlineExaminationSystem.App.controller;
 
-import com.OnlineExaminationSystem.App.entity.Exam.*;
+import com.OnlineExaminationSystem.App.entity.exam.*;
 import com.OnlineExaminationSystem.App.service.ExamService;
 import com.OnlineExaminationSystem.App.service.StudentAnswerService;
 import lombok.AllArgsConstructor;

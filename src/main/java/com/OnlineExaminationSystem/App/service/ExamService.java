@@ -1,10 +1,9 @@
 package com.OnlineExaminationSystem.App.service;
 
-import com.OnlineExaminationSystem.App.entity.Exam.Exam;
-import com.OnlineExaminationSystem.App.entity.Exam.Question;
+import com.OnlineExaminationSystem.App.entity.exam.Exam;
+import com.OnlineExaminationSystem.App.entity.exam.Question;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.ExamRepository;
-import com.OnlineExaminationSystem.App.repository.QuestionAnswerRepository;
 import com.OnlineExaminationSystem.App.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

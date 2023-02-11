@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
-@Table(name = "Question", schema = "examinationsystem")
+@Table(name = "Question", schema = "public")
 @NoArgsConstructor
 @Setter
 @Getter

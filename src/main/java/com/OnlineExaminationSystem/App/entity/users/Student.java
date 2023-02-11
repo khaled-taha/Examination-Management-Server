@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "student", schema = "examinationsystem")
+@Table(name = "student", schema = "public")
 @NoArgsConstructor
 @Setter
 @Getter

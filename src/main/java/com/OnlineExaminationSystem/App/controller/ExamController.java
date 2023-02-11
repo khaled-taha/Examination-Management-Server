@@ -24,12 +24,14 @@ public class ExamController {
 
     // save exam
     @PostMapping(path = "/save")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Exam> saveExam(@RequestBody Exam exam){
         Exam savedExam = this.examService.saveExam(exam);
         return new ResponseEntity<>(savedExam, HttpStatus.OK);
     }
 
     @GetMapping(path = "/getAll")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<List<Exam>> getExamById(){
         List<Exam> exams = this.examService.getAllExams();
         return new ResponseEntity<>(exams, HttpStatus.OK);
@@ -37,6 +39,7 @@ public class ExamController {
 
     // get Exam By Id
     @GetMapping(path = "/{id}")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Exam> getExamById(@PathVariable("id") long id){
         Exam exam = this.examService.getExamById(id);
         return new ResponseEntity<>(exam, HttpStatus.OK);
@@ -44,6 +47,7 @@ public class ExamController {
 
     // delete exam
     @DeleteMapping(path = "/delete")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<?> deleteExam(@RequestBody Exam exam){
         this.examService.deleteExam(exam);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -51,6 +55,7 @@ public class ExamController {
 
     // save question
     @PostMapping(path = "/saveQuestion")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Question> saveQuestion(@RequestBody Question question){
         Question savedQuestion = this.examService.saveQuestion(question);
         return new ResponseEntity<>(savedQuestion, HttpStatus.OK);
@@ -58,6 +63,7 @@ public class ExamController {
 
     // delete question
     @DeleteMapping(path = "/deleteQuestion")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<?> deleteQuestion(@RequestBody Question question){
         this.examService.deleteQuestion(question);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -65,6 +71,7 @@ public class ExamController {
 
     // Attempt the exam
     @PostMapping(path = "/attemptExam")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Exam> attemptExam(@RequestBody ExamAttempt examAttempt){
         ExamAttempt attempt = this.studentAnswerService.attemptExam(examAttempt);
         return new ResponseEntity<>(attempt.getExam(), HttpStatus.OK);
@@ -72,6 +79,7 @@ public class ExamController {
 
     // create a Student answer for a question
     @PostMapping(path = "/saveStudentAnswer")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<?> saveStudentAnswer(@RequestBody StudentAnswer studentAnswer){
         this.studentAnswerService.createStudentAnswer(studentAnswer);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -79,6 +87,7 @@ public class ExamController {
 
     // Get all student answers of the exam
     @GetMapping(path = "/getAllStudentAnswers")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<List<StudentAnswer>> getAllStudentAnswers(){
         List<StudentAnswer> answers = this.studentAnswerService.getAllAnswers();
         return new ResponseEntity<>(answers, HttpStatus.OK);
@@ -86,6 +95,7 @@ public class ExamController {
 
     // create the result
     @PostMapping(path = "/createResult")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<ExamResult> createResult(@RequestBody ExamResult examResult){
         ExamResult result = this.studentAnswerService.createResult(examResult);
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -93,6 +103,7 @@ public class ExamController {
 
     // get the result of the student
     @GetMapping(path = "/getResult/{attemptId}")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<ExamResult> getResult(@PathVariable("attemptId") long attemptId){
         ExamResult result = this.studentAnswerService.getResult(attemptId);
         return new ResponseEntity<>(result, HttpStatus.OK);

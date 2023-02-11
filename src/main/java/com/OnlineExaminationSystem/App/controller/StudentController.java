@@ -21,12 +21,14 @@ public class StudentController {
 
     @Operation(summary = "To get all students from DB")
     @GetMapping(path = "/getAll")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<List<Student>> getStudents() {
         return new ResponseEntity<>(this.studentService.getAllStudents(), HttpStatus.OK);
     }
 
     @Operation(summary = "To get a student from DB by id")
     @GetMapping(path = "/get/{id}")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Student> getStudent(@PathVariable("id") Long id) {
         return new ResponseEntity<>(this.studentService.getStudentById(id), HttpStatus.OK);
     }
@@ -35,6 +37,7 @@ public class StudentController {
             "Set the password with value (firstName + LastName + university id) by default." +
             "At the same time, you can set it manually.")
     @PostMapping(path = "/add")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Student> addStudent(@RequestBody Student student) {
         Student st = this.studentService.addAndUpdateStudent(student);
         return new ResponseEntity<>(st, HttpStatus.OK);
@@ -42,6 +45,7 @@ public class StudentController {
 
     @Operation(summary = "To update a student in DB.")
     @PostMapping(path = "/update")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         Student st = this.studentService.addAndUpdateStudent(student);
         return new ResponseEntity<>(st, HttpStatus.OK);
@@ -49,6 +53,7 @@ public class StudentController {
 
     @Operation(summary = "To delete a student from DB by id")
     @DeleteMapping(path = "/delete/{id}")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<?> deleteStudent(@PathVariable("id") long studentId) {
         this.studentService.deleteById(studentId);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -57,6 +62,7 @@ public class StudentController {
 
     @Operation(summary = "To get All Attempts of the student by his id")
     @GetMapping(path = "attempts")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<List<ExamAttempt>> getAllAttempts(@PathVariable("id") long id){
         List<ExamAttempt> attempts = this.studentService.getAllAttempts(id);
         return new ResponseEntity<>(attempts, HttpStatus.OK);

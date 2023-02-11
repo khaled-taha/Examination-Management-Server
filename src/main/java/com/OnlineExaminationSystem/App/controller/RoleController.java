@@ -21,12 +21,14 @@ public class RoleController {
 
     @Operation(summary = "To get all roles from DB.")
     @GetMapping(path = "/getAll")
+    @CrossOrigin(origins = "*", originPatterns = ".*")
     public ResponseEntity<List<Role>> getRoles() {
         return new ResponseEntity<>(this.roleService.getAllRoles(), HttpStatus.OK);
     }
 
     @Operation(summary = "To get a role from DB by id")
     @GetMapping(path = "/get/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Role> getRoles(@PathVariable("id") int id) {
         return new ResponseEntity<>(this.roleService.findRoleById(id), HttpStatus.OK);
     }
@@ -34,6 +36,7 @@ public class RoleController {
 
     @Operation(summary = "To add a role to DB. You will add without id key of JSON or set Id = 0")
     @PostMapping(path = "/add")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Role> addRoles(@RequestBody Role role) {
         Role ro =  this.roleService.addAndUpdateRole(role);
         return new ResponseEntity<>(ro, HttpStatus.OK);
@@ -41,6 +44,7 @@ public class RoleController {
 
     @Operation(summary = "To update a role in DB.")
     @PostMapping(path = "/update")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Role> updateRoles(@RequestBody Role role) {
         Role ro =  this.roleService.addAndUpdateRole(role);
         return new ResponseEntity<>(ro, HttpStatus.OK);
@@ -48,6 +52,7 @@ public class RoleController {
 
     @Operation(summary = "To delete a role from DB by id")
     @DeleteMapping(path = "/delete/{id}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> deleteRole(@PathVariable("id") int id) {
         this.roleService.deleteRoleById(id);
         return new ResponseEntity<>(HttpStatus.OK);

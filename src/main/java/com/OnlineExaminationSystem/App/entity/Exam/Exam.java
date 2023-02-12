@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Exam", schema = "examinationsystem")
+@Table(name = "Exam", schema = "public")
 @NoArgsConstructor
 @Setter
 @Getter

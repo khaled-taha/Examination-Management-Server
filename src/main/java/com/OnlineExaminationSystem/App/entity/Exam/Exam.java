@@ -19,8 +19,8 @@ public class Exam {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "examId")
-    private long Id;
+    @Column(name = "id")
+    private long id;
 
     @Column(name = "examName", unique = true)
     private String examName;

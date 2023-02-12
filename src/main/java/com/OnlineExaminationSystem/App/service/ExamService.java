@@ -31,12 +31,25 @@ public class ExamService {
     }
 
     public void deleteExam(Exam exam){
+        this.questionRepository.deleteAllByExamId(exam.getId());
         this.examRepository.delete(exam);
     }
 
 
-    public Question saveQuestion(Question question) {
-        return this.questionRepository.save(question);
+    public List<Question> saveQuestions(List<Question> questions) {
+
+        Exam exam = questions.get(0).getExam();
+        exam.setQuestions(questions);
+
+        questions.stream().forEach(question ->
+                question.getQuestionAnswers().stream().forEach(answer -> answer.setQuestion(question))
+        );
+
+        return this.examRepository.save(exam).getQuestions();
+    }
+
+    public List<Question> getExamQuestions(long examId) {
+        return this.questionRepository.findAllByExamId(examId);
     }
 
     public void deleteQuestion(Question question){

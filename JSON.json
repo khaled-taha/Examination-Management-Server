@@ -1,0 +1,73 @@
+// exam/save
+
+{
+    "examName": "java",
+    "examDate": "2023-02-12T05:18:19.677Z",
+    "duration": 30,
+    "startTime": "2023-02-12T05:18:19.677Z",
+    "endTime": "2023-02-12T05:18:19.677Z"
+  }
+//===============================================
+
+// api/exam/saveQuestions
+
+[
+    {
+    "id": 0,
+  "questionText": "What is Java ?",
+  "points": 5,
+  "questionType": "Complete",
+  "exam": {
+        "id": 1,
+        "examName": "java",
+        "examDate": "2023-02-12T05:18:19.000+00:00",
+        "duration": 30,
+        "startTime": "2023-02-12T05:18:19",
+        "endTime": "2023-02-12T05:18:19"
+    },
+  "questionAnswers": [
+    {
+                "id": 0,
+      "answerText": "MUL",
+      "correctAnswer": true
+    },
+
+    {
+                "id": 0,
+      "answerText": "Scripting Langauge",
+      "correctAnswer": false
+    }
+  ]
+},
+    {
+    "id": 0,
+  "questionText": "What is python ?",
+  "points": 5,
+  "questionType": "Complete",
+  "exam": {
+        "id": 1,
+        "examName": "java",
+        "examDate": "2023-02-12T05:18:19.000+00:00",
+        "duration": 30,
+        "startTime": "2023-02-12T05:18:19",
+        "endTime": "2023-02-12T05:18:19"
+    },
+  "questionAnswers": [
+    {
+        "id": 0,
+      "answerText": "programming Langauge",
+      "correctAnswer": true
+    },
+
+    {
+        "id": 0,
+      "answerText": "Scripting Langauge",
+      "correctAnswer": false
+    }
+  ]
+}
+]
+
+// ==============================================
+
+

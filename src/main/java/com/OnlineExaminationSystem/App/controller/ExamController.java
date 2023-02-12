@@ -50,10 +50,17 @@ public class ExamController {
     }
 
     // save question
-    @PostMapping(path = "/saveQuestion")
-    public ResponseEntity<Question> saveQuestion(@RequestBody Question question){
-        Question savedQuestion = this.examService.saveQuestion(question);
-        return new ResponseEntity<>(savedQuestion, HttpStatus.OK);
+    @PostMapping(path = "/saveQuestions")
+    public ResponseEntity<List<Question>> saveQuestions(@RequestBody List<Question> questions){
+        List<Question> savedQuestions = this.examService.saveQuestions(questions);
+        return new ResponseEntity<>(savedQuestions, HttpStatus.OK);
+    }
+
+    // get Questions of an exam
+    @GetMapping(path = "/getQuestions/{id}")
+    public ResponseEntity<List<Question>> saveQuestions(@PathVariable("id") long examId){
+        List<Question> examQuestions = this.examService.getExamQuestions(examId);
+        return new ResponseEntity<>(examQuestions, HttpStatus.OK);
     }
 
     // delete question

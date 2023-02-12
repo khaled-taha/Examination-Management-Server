@@ -1,6 +1,7 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class QuestionAnswer {
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
+    @JsonIgnore
     private Question question;
 
 }

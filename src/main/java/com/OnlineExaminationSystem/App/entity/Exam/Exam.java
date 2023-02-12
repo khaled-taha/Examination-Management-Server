@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,6 +40,7 @@ public class Exam {
 
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Question> questions = new ArrayList<>();
     // getters and setters
 }

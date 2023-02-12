@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="324c6ba2-3b72-42f0-85a3-9087408023f6" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "E:/Graduation Project/sprints/Examination-Management-Server/src/main/java/com/OnlineExaminationSystem/App/service"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\service" />
+      <recent name="E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\repository" />
+      <recent name="E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.OnlineExaminationSystem.App.controller" />
+    </key>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+</project>

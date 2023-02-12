@@ -20,7 +20,7 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "examId")
-    private Long examId;
+    private long Id;
 
     @Column(name = "examName", unique = true)
     private String examName;

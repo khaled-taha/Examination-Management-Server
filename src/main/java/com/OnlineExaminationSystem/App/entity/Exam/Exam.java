@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,16 +27,15 @@ public class Exam {
     @Column(name = "examName", unique = true)
     private String examName;
 
-    @Column(name = "examDate")
-    private Date examDate;
-
     @Column(name = "duration")
     private Integer duration;
 
     @Column(name = "startTime")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime startTime;
 
     @Column(name = "endTime")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime endTime;
 
 

@@ -1,3 +1,32 @@
+
+// roles/add
+
+{
+  "role": "STUDENT"
+}
+
+// =======================================
+
+// students/add
+
+{
+  "firstName": "Ahmed",
+  "lastName": "Reda",
+  "universityId":18,
+  "email": "Ahme@wi.comm",
+  "password": "zzzzzzzz1  ",
+  "roles": [
+      {
+          "id": 1,
+          "role": "STUDENT"
+      }
+  ],
+  "year":4,
+  "locked": false,
+  "enable": true
+}
+
+
 // exam/save
 
 {
@@ -70,4 +99,35 @@
 
 // ==============================================
 
+// exam/attemptExam
+
+{
+  "id": 0,
+  "exam": {
+    "id": 0,
+    "examName": "string",
+    "examDate": "2023-02-19T15:57:38.707Z",
+    "duration": 0,
+    "startTime": "2023-02-19T15:57:38.707Z",
+    "endTime": "2023-02-19T15:57:38.707Z"
+  },
+  "user": {
+    "id": 0,
+    "firstName": "string",
+    "lastName": "string",
+    "universityId": 0,
+    "email": "string",
+    "password": "string",
+    "roles": [
+      {
+        "id": 0,
+        "role": "string"
+      }
+    ],
+    "locked": true,
+    "enable": true
+  },
+  "startTime": "2023-02-19T15:57:38.707Z",
+  "endTime": "2023-02-19T15:57:38.707Z"
+}
 

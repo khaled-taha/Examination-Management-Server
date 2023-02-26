@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,11 +33,11 @@ public class Exam {
     private Integer duration;
 
     @Column(name = "startTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime startTime;
 
     @Column(name = "endTime")
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime endTime;
 
 

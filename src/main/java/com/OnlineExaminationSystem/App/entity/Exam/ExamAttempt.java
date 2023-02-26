@@ -29,10 +29,12 @@ public class ExamAttempt {
 
     @Column(name = "startTime")
     @CreationTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime startTime;
 
     @Column(name = "endTime")
     @CreationTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime endTime;
 
     // getters and setters

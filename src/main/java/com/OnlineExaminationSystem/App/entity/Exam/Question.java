@@ -1,11 +1,13 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,10 +33,12 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Exam exam;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<QuestionAnswer> questionAnswers;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<QuestionAnswer> questionAnswers = new ArrayList<>();
 
     // Getters and setters
 }

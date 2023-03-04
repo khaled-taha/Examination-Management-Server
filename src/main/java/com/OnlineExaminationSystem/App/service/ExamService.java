@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -59,5 +60,16 @@ public class ExamService {
 
     public List<Exam> getAllExams() {
        return this.examRepository.findAll();
+    }
+
+    public int getExamPoints(long examId){
+        //get the exam
+        Optional<Exam> exam = this.examRepository.findExamById(examId);
+
+        // get all questions with answers
+        List<Question> questions = exam.get().getQuestions();
+
+        // get the total points of the exam
+        return questions.stream().mapToInt(Question::getPoints).sum();
     }
 }

@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +19,11 @@ public class ExamResult {
 
     @OneToOne
     @JoinColumn(name = "exam_attempt_id")
+    @JsonIgnore
     private ExamAttempt examAttempt;
 
     @Column(name = "score")
-    private float score;
+    private double score;
 
     @Column(name = "passed")
     private boolean passed;

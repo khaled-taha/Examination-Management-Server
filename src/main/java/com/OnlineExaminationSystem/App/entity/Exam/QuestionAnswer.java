@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.entity.Exam;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,30 +28,7 @@ public class QuestionAnswer {
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Question question;
 
 }
-/*
--- Store a multiple choice question
-        INSERT INTO Question (question_text, question_type) VALUES ('What is the capital of France?', 'MULTIPLE_CHOICE');
-
-        INSERT INTO QuestionAnswer (question_id, answer_text, is_correct)
-        VALUES (LAST_INSERT_ID(), 'Paris', 1),
-        (LAST_INSERT_ID(), 'Berlin', 0),
-        (LAST_INSERT_ID(), 'London', 0),
-        (LAST_INSERT_ID(), 'Rome', 0);
-
-        -- Store a true/false question
-        INSERT INTO Question (question_text, question_type) VALUES ('Is the sun a star?', 'TRUE_FALSE');
-
-        INSERT INTO QuestionAnswer (question_id, answer_text, is_correct)
-        VALUES (LAST_INSERT_ID(), 'True', 1),
-        (LAST_INSERT_ID(), 'False', 0);
-
-        -- Store a fill in the blank question
-        INSERT INTO Question (question_text, question_type) VALUES ('The capital of Italy is ________', 'FILL_IN_THE_BLANK');
-
-        INSERT INTO QuestionAnswer (question_id, answer_text, is_correct)
-        VALUES (LAST_INSERT_ID(), 'Rome', 1);
-*/

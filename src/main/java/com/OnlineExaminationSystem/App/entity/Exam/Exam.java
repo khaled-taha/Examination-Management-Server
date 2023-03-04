@@ -40,6 +40,9 @@ public class Exam {
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime endTime;
 
+    @Column(name = "successRate")
+    private double successRate;
+
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
     @JsonIgnore

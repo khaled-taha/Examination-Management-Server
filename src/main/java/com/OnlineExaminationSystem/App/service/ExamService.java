@@ -2,6 +2,9 @@ package com.OnlineExaminationSystem.App.service;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.OnlineExaminationSystem.App.entity.Exam.Question;
+import com.OnlineExaminationSystem.App.entity.dto.ExamDto;
+import com.OnlineExaminationSystem.App.entity.dto.QuestionAnswerDto;
+import com.OnlineExaminationSystem.App.entity.dto.QuestionDto;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.ExamRepository;
 import com.OnlineExaminationSystem.App.repository.QuestionRepository;
@@ -9,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,5 +75,45 @@ public class ExamService {
 
         // get the total points of the exam
         return questions.stream().mapToInt(Question::getPoints).sum();
+    }
+
+    public ExamDto renderExam(long examId){
+        Exam exam = this.getExamById(examId);
+
+        List<Question> questions = exam.getQuestions();
+        List<QuestionDto> questionDto = new ArrayList<>();
+
+        questions.stream().forEach((question) -> {
+
+            // set question answers
+            List<QuestionAnswerDto> questionAnswerDto = new ArrayList<>();
+
+            question.getQuestionAnswers().stream().forEach((answer) -> {
+
+                questionAnswerDto.add(QuestionAnswerDto.builder()
+                        .id(answer.getId())
+                        .answerText(answer.getAnswerText())
+                        .build());
+            });
+
+            // set questions
+            questionDto.add(QuestionDto.builder()
+                    .id(question.getId())
+                    .points(question.getPoints())
+                    .questionType(question.getQuestionType())
+                    .questionText(question.getQuestionText())
+                    .questionAnswers(questionAnswerDto)
+                    .build());
+        });
+
+        return ExamDto.builder()
+                .id(exam.getId())
+                .examName(exam.getExamName())
+                .duration(exam.getDuration())
+                .startTime(exam.getStartTime())
+                .endTime(exam.getEndTime())
+                .successRate(exam.getSuccessRate())
+                .questions(questionDto)
+                .build();
     }
 }

@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.controller;
 
 import com.OnlineExaminationSystem.App.entity.Exam.*;
 import com.OnlineExaminationSystem.App.entity.dto.CompleteStudentAnswerDto;
+import com.OnlineExaminationSystem.App.entity.dto.ExamDto;
 import com.OnlineExaminationSystem.App.entity.dto.SelectedStudentAnswerDto;
 import com.OnlineExaminationSystem.App.service.ExamService;
 import com.OnlineExaminationSystem.App.service.StudentAnswerService;
@@ -123,6 +124,13 @@ public class ExamController {
         ExamResult result = this.studentAnswerService.getResult(attemptId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @GetMapping(path = "/renderExam/{examId}")
+    public ResponseEntity<ExamDto> renderExam(@PathVariable("examId") long examId){
+        ExamDto exam = this.examService.renderExam(examId);
+        return new ResponseEntity<>(exam, HttpStatus.OK);
+    }
+
 
 
 }

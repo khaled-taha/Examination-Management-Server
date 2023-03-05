@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.service;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.OnlineExaminationSystem.App.entity.Exam.Question;
+import com.OnlineExaminationSystem.App.entity.Exam.QuestionType;
 import com.OnlineExaminationSystem.App.entity.dto.ExamDto;
 import com.OnlineExaminationSystem.App.entity.dto.QuestionAnswerDto;
 import com.OnlineExaminationSystem.App.entity.dto.QuestionDto;
@@ -77,7 +78,8 @@ public class ExamService {
         return questions.stream().mapToInt(Question::getPoints).sum();
     }
 
-    public ExamDto renderExam(long examId){
+    public ExamDto renderExam(long examId) {
+
         Exam exam = this.getExamById(examId);
 
         List<Question> questions = exam.getQuestions();
@@ -92,7 +94,8 @@ public class ExamService {
 
                 questionAnswerDto.add(QuestionAnswerDto.builder()
                         .id(answer.getId())
-                        .answerText(answer.getAnswerText())
+                        .answerText((answer.getQuestion().getQuestionType() != QuestionType.Matching)
+                                ? answer.getAnswerText() : null)
                         .build());
             });
 
@@ -100,7 +103,7 @@ public class ExamService {
             questionDto.add(QuestionDto.builder()
                     .id(question.getId())
                     .points(question.getPoints())
-                    .questionType(question.getQuestionType())
+                    .questionType(question.getQuestionType().name())
                     .questionText(question.getQuestionText())
                     .questionAnswers(questionAnswerDto)
                     .build());

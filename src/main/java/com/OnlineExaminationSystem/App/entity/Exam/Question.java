@@ -29,7 +29,8 @@ public class Question {
     private int points;
 
     @Column(name = "question_type", nullable = false)
-    private String questionType;
+    @Enumerated
+    private QuestionType questionType;
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)

@@ -21,6 +21,6 @@ import java.io.Serializable;
 public class Student extends User implements Serializable {
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "groups_id")
     private Group group;
 }

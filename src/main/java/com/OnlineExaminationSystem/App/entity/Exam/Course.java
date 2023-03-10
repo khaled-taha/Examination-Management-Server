@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
 @Data
 @Entity
 @Table(name = "course", schema = "public")
@@ -22,7 +23,7 @@ public class Course {
     private String code;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "groups_id")
     private Group group;
 
 

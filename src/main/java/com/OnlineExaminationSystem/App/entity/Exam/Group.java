@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "group", schema = "public")
+@Table(name = "groups", schema = "public")
 @Data
 public class Group {
 

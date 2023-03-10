@@ -18,7 +18,7 @@ public class ExamResult {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "exam_attempt_id")
+    @JoinColumn(name = "exam_attempt_id", unique = true)
     @JsonIgnore
     private ExamAttempt examAttempt;
 

@@ -20,7 +20,7 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<Course> saveCourse(Course course){
+    public ResponseEntity<Course> saveCourse(@RequestBody Course course){
         try {
             Course savedCourse = this.courseService.saveCourse(course);
             return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
@@ -29,8 +29,8 @@ public class CourseController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteGroup(long courseId){
+    @DeleteMapping("/{groupId}")
+    public ResponseEntity<Void> deleteGroup(@PathVariable("groupId") long courseId){
         try {
             this.courseService.deleteCourse(courseId);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -50,7 +50,7 @@ public class CourseController {
     }
 
     @GetMapping("/{groupId}")
-    public ResponseEntity<List<Course>> getCoursesByGroupId(@PathVariable Long groupId) {
+    public ResponseEntity<List<Course>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
         try {
             List<Course> courses = courseService.getCoursesByGroupId(groupId);
             return new ResponseEntity<>(courses, HttpStatus.OK);

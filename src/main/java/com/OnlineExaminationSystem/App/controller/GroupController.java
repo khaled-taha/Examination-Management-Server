@@ -21,17 +21,19 @@ public class GroupController {
     private GroupService groupService;
 
     @PostMapping
-    public ResponseEntity<Group> saveGroup(Group group){
+    public ResponseEntity<Group> saveGroup(@RequestBody Group group){
+        System.out.println(group);
         try {
             Group savedGroup = this.groupService.saveGroup(group);
+
             return new ResponseEntity<>(savedGroup, HttpStatus.CREATED);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteGroup(long groupId){
+    @DeleteMapping("/{groupId}")
+    public ResponseEntity<Void> deleteGroup(@PathVariable("groupId") long groupId){
         try {
             this.groupService.deleteGroup(groupId);
             return new ResponseEntity<>(HttpStatus.OK);

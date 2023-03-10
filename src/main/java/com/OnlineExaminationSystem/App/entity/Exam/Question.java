@@ -29,7 +29,7 @@ public class Question {
     private int points;
 
     @Column(name = "question_type", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Enumerated
     private QuestionType questionType;
 
     @ManyToOne

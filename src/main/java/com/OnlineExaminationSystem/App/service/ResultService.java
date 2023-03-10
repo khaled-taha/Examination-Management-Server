@@ -10,6 +10,7 @@ import com.OnlineExaminationSystem.App.repository.ExamResultRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -38,7 +39,7 @@ public class ResultService {
     @Autowired
     public GroupService groupService;
 
-
+    @Transactional
     public ExamResultDto createResult(long attemptId){
         // get exam attempt
         Optional<ExamAttempt> attempt = this.attemptRepository.findById(attemptId);
@@ -54,7 +55,6 @@ public class ResultService {
         result.setExamAttempt(attempt.get());
 
         ExamResult examResult =  this.examResultRepository.save(result);
-        List<Group> groups = this.groupService.getGroupByUserId(examResult.getExamAttempt().getUser().getId());
 
         return ExamResultDto.builder()
                 .id(examResult.getId())
@@ -64,7 +64,7 @@ public class ResultService {
                         .format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a")))
                 .name(examResult.getExamAttempt().getUser().getFirstName() +
                         " " + examResult.getExamAttempt().getUser().getLastName())
-                .groupName(groups.get(0).getName())
+                .groupName(examResult.getExamAttempt().getExam().getCourse().getGroup().getName())
                 .build();
     }
 

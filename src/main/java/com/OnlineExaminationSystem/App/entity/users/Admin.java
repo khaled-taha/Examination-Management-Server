@@ -29,7 +29,7 @@ public class Admin extends User implements Serializable {
     @NotNull
     @JoinTable(name = "admin_groups",
             joinColumns = @JoinColumn(name = "admin_id"),
-            inverseJoinColumns = @JoinColumn(name = "group_id"))
+            inverseJoinColumns = @JoinColumn(name = "groups_id"))
     private Set<Group> groups = new HashSet<>();
 
 }

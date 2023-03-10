@@ -1,18 +1,20 @@
 package com.OnlineExaminationSystem.App.service;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
+import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
 import com.OnlineExaminationSystem.App.entity.Exam.Question;
 import com.OnlineExaminationSystem.App.entity.Exam.QuestionType;
-import com.OnlineExaminationSystem.App.entity.dto.ExamDto;
-import com.OnlineExaminationSystem.App.entity.dto.QuestionAnswerDto;
-import com.OnlineExaminationSystem.App.entity.dto.QuestionDto;
+import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
+import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionAnswerDto;
+import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionDto;
+import com.OnlineExaminationSystem.App.entity.users.User;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
-import com.OnlineExaminationSystem.App.repository.ExamRepository;
-import com.OnlineExaminationSystem.App.repository.QuestionRepository;
+import com.OnlineExaminationSystem.App.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,46 +29,71 @@ public class ExamService {
     @Autowired
     private QuestionRepository questionRepository;
 
+    @Autowired
+    private ExamAttemptRepository attemptRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ExamResultRepository examResultRepository;
+
+
     public Exam saveExam(Exam exam){
         return this.examRepository.save(exam);
     }
-
+    public List<Exam> getAllExams() {
+        return this.examRepository.findAll();
+    }
     public Exam getExamById(long id){
         return this.examRepository.findExamById(id)
                 .orElseThrow(() -> new ApiException("Exam Not found"));
     }
-
     public void deleteExam(Exam exam){
         this.questionRepository.deleteAllByExamId(exam.getId());
         this.examRepository.delete(exam);
     }
+    public ExamAttempt attemptExam(long userId, long examId){
+        Optional<Exam> exam =  this.examRepository.findExamById(examId);
+        Optional<User> user = this.userRepository.findById(userId);
 
 
+        if(user.isPresent() && exam.isPresent()
+                && (LocalDateTime.now().equals(exam.get().getStartTime()) || (LocalDateTime.now().isAfter(exam.get().getStartTime())))
+                && (LocalDateTime.now().isBefore(exam.get().getEndTime()))) {
+
+            ExamAttempt examAttempt = new ExamAttempt();
+            examAttempt.setUser(user.get());
+            examAttempt.setExam(exam.get());
+            return this.attemptRepository.save(examAttempt);
+        }
+        return null;
+    }
+    public void endExam(long attemptId){
+        Optional<ExamAttempt> attempt = this.attemptRepository.findById(attemptId);
+        if(attempt.isPresent()) {
+            attempt.get().setEndTime(LocalDateTime.now());
+            this.attemptRepository.save(attempt.get());
+        }
+    }
     public List<Question> saveQuestions(List<Question> questions) {
 
         Exam exam = questions.get(0).getExam();
         exam.setQuestions(questions);
 
         questions.stream().forEach(question ->
-                question.getQuestionAnswers().stream().forEach(answer -> answer.setQuestion(question))
+                question.getQuestionAnswers().stream().
+                        forEach(answer -> answer.setQuestion(question))
         );
 
         return this.examRepository.save(exam).getQuestions();
     }
-
     public List<Question> getExamQuestions(long examId) {
         return this.questionRepository.findAllByExamId(examId);
     }
-
     public void deleteQuestion(Question question){
         this.questionRepository.delete(question);
     }
-
-
-    public List<Exam> getAllExams() {
-       return this.examRepository.findAll();
-    }
-
     public int getExamPoints(long examId){
         //get the exam
         Optional<Exam> exam = this.examRepository.findExamById(examId);
@@ -77,7 +104,6 @@ public class ExamService {
         // get the total points of the exam
         return questions.stream().mapToInt(Question::getPoints).sum();
     }
-
     public ExamDto renderExam(long examId) {
 
         Exam exam = this.getExamById(examId);
@@ -109,6 +135,8 @@ public class ExamService {
                     .build());
         });
 
+        System.out.println(questionDto);
+
         return ExamDto.builder()
                 .id(exam.getId())
                 .examName(exam.getExamName())
@@ -119,4 +147,8 @@ public class ExamService {
                 .questions(questionDto)
                 .build();
     }
+    public List<Exam> getAllExamsByCourseId(Long courseId) {
+        return examRepository.findAllExamsByCourseId(courseId);
+    }
+
 }

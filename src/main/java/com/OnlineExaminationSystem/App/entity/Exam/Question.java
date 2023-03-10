@@ -29,16 +29,15 @@ public class Question {
     private int points;
 
     @Column(name = "question_type", nullable = false)
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private QuestionType questionType;
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Exam exam;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<QuestionAnswer> questionAnswers = new ArrayList<>();
 
     // Getters and setters

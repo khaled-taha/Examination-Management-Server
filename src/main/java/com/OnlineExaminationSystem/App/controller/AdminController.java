@@ -41,7 +41,7 @@ public class AdminController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
     public ResponseEntity<Admin> addStudent(@RequestBody Admin admin) {
-        Admin adm =  this.adminService.addAndUpdateAdmin(admin);
+        Admin adm =  this.adminService.saveAdmin(admin);
         return new ResponseEntity<>(adm, HttpStatus.OK);
     }
 
@@ -49,7 +49,7 @@ public class AdminController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/update")
     public ResponseEntity<Admin> updateStudent(@RequestBody Admin admin) {
-        Admin adm =  this.adminService.addAndUpdateAdmin(admin);
+        Admin adm =  this.adminService.saveAdmin(admin);
         return new ResponseEntity<>(adm, HttpStatus.OK);
     }
 
@@ -60,7 +60,5 @@ public class AdminController {
         this.adminService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 
 }

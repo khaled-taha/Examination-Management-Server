@@ -18,7 +18,7 @@ public class AdminService {
     private final UserRepository userRepository;
 
 
-   public Admin addAndUpdateAdmin(Admin admin) {
+   public Admin saveAdmin(Admin admin) {
 
             if(this.userRepository.findUserByEmailAndIdNot(admin.getEmail(), admin.getId()).isPresent()) {
                 throw new ApiException("Duplicate Email");

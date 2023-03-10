@@ -37,11 +37,10 @@ public abstract class User implements Serializable {
     @Column(name = "lastName")
     private String lastName;
 
-
     @Column(name = "universityId")
     @Positive
     @NotNull
-    private long universityId;
+    private Long universityId;
 
     @Column(name = "email", unique = true)
     @NotBlank
@@ -55,8 +54,8 @@ public abstract class User implements Serializable {
     @ManyToMany
     @NotNull
     @JoinTable(name = "user_roles",
-               joinColumns = @JoinColumn(name = "user_id"),
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
     @Column(name = "locked")

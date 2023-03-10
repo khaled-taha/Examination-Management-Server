@@ -1,10 +1,12 @@
 package com.OnlineExaminationSystem.App.controller;
 
 import com.OnlineExaminationSystem.App.entity.Exam.*;
-import com.OnlineExaminationSystem.App.entity.dto.CompleteStudentAnswerDto;
-import com.OnlineExaminationSystem.App.entity.dto.ExamDto;
-import com.OnlineExaminationSystem.App.entity.dto.SelectedStudentAnswerDto;
+import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
+import com.OnlineExaminationSystem.App.entity.dto.studentAnswer.CompleteStudentAnswerDto;
+import com.OnlineExaminationSystem.App.entity.dto.studentAnswer.ExamResultDto;
+import com.OnlineExaminationSystem.App.entity.dto.studentAnswer.SelectedStudentAnswerDto;
 import com.OnlineExaminationSystem.App.service.ExamService;
+import com.OnlineExaminationSystem.App.service.ResultService;
 import com.OnlineExaminationSystem.App.service.StudentAnswerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class ExamController {
 
     @Autowired
     private StudentAnswerService studentAnswerService;
+
+    @Autowired
+    private ResultService resultService;
 
     // save exam
     @PostMapping(path = "/save")
@@ -77,21 +82,22 @@ public class ExamController {
     @PostMapping(path = "/attemptExam/{examId}/{userId}")
     public ResponseEntity<ExamAttempt> attemptExam(@PathVariable("examId") long examId,
                                                    @PathVariable("userId") long userId){
-        ExamAttempt attempt = this.studentAnswerService.attemptExam(userId, examId);
+        ExamAttempt attempt = this.examService.attemptExam(userId, examId);
+        System.out.println(attempt);
         return new ResponseEntity<>(attempt, HttpStatus.OK);
     }
 
     // create a Student answer for a question {Selection}
-    @PostMapping(path = "/saveSelectedStudentAnswer/{examAttemptId}")
-    public ResponseEntity<?> saveSelectedStudentAnswer(List<SelectedStudentAnswerDto> selectedAnswersDto,
+    @PostMapping(path = "/saveSelectedStudentAnswer/{attemptId}")
+    public ResponseEntity<?> saveSelectedStudentAnswer(@RequestBody List<SelectedStudentAnswerDto> selectedAnswersDto,
                                                        @PathVariable("attemptId") long attemptId){
         this.studentAnswerService.saveSelectedStudentAnswer(selectedAnswersDto, attemptId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // create a Student answer for a question {Complete}
-    @PostMapping(path = "/saveCompleteStudentAnswer/{examAttemptId}")
-    public ResponseEntity<?> saveCompleteStudentAnswer(List<CompleteStudentAnswerDto> selectedAnswersDto,
+    @PostMapping(path = "/saveCompleteStudentAnswer/{attemptId}")
+    public ResponseEntity<?> saveCompleteStudentAnswer(@RequestBody List<CompleteStudentAnswerDto> selectedAnswersDto,
                                                        @PathVariable("attemptId") long attemptId){
         this.studentAnswerService.saveCompleteStudentAnswer(selectedAnswersDto, attemptId);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -99,9 +105,9 @@ public class ExamController {
 
     // end the exam
     @PostMapping(path = "/endExam/{examAttemptId}")
-    public ResponseEntity<ExamResult> endExam(@PathVariable("examAttemptId") long examAttemptId){
-        ExamResult examResult = this.studentAnswerService.endExam(examAttemptId);
-        return new ResponseEntity<>(examResult, HttpStatus.OK);
+    public ResponseEntity<?> endExam(@PathVariable("examAttemptId") long examAttemptId){
+        this.examService.endExam(examAttemptId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // Get all student answers of the exam
@@ -113,15 +119,22 @@ public class ExamController {
 
     // create the result
     @PostMapping(path = "/createResult/{examAttemptId}")
-    public ResponseEntity<ExamResult> createResult(@PathVariable("examAttemptId") long examAttemptId){
-        ExamResult result = this.studentAnswerService.createResult(examAttemptId);
+    public ResponseEntity<ExamResultDto> createResult(@PathVariable("examAttemptId") long examAttemptId){
+        ExamResultDto result = this.resultService.createResult(examAttemptId);
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    // get users that Attempt Exam
+    @GetMapping(path = "/usersAttemptedExam/{examId}")
+    public ResponseEntity<List<ExamResultDto>> findAllUsersAttemptedExam(@PathVariable("examId") long examId){
+        List<ExamResultDto> usersAttemptedExam =  this.resultService.findAllUsersAttemptedExam(examId);
+        return new ResponseEntity<>(usersAttemptedExam, HttpStatus.OK);
     }
 
     // get the result of the student
     @GetMapping(path = "/getResult/{attemptId}")
     public ResponseEntity<ExamResult> getResult(@PathVariable("attemptId") long attemptId){
-        ExamResult result = this.studentAnswerService.getResult(attemptId);
+        ExamResult result = this.resultService.getResult(attemptId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -131,6 +144,11 @@ public class ExamController {
         return new ResponseEntity<>(exam, HttpStatus.OK);
     }
 
+    @GetMapping(path = "/getAll/{courseId}")
+    public ResponseEntity<List<Exam>> getAllExamsByCourseId(@PathVariable long courseId) {
+        List<Exam> exams = examService.getAllExamsByCourseId(courseId);
+        return ResponseEntity.ok(exams);
+    }
 
 
 }

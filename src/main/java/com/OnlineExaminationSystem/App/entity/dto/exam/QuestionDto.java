@@ -1,10 +1,12 @@
-package com.OnlineExaminationSystem.App.entity.dto;
+package com.OnlineExaminationSystem.App.entity.dto.exam;
 
 import lombok.Builder;
+import lombok.Data;
 
 import java.util.List;
 
 @Builder
+@Data
 public class QuestionDto {
 
     private Long id;

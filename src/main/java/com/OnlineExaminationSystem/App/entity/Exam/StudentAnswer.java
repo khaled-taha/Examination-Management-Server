@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.bytebuddy.build.ToStringPlugin;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToStringPlugin.Enhance
 public class StudentAnswer {
 
     @Id
@@ -21,8 +23,8 @@ public class StudentAnswer {
 
     @ManyToMany
     @JoinTable(name = "student_answer_question_answer",
-            joinColumns = @JoinColumn(name = "student_answer_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "question_answer_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "student_answer_id"),
+            inverseJoinColumns = @JoinColumn(name = "question_answer_id"))
     private List<QuestionAnswer> questionAnswers;
 
     @ManyToOne
@@ -30,14 +32,20 @@ public class StudentAnswer {
     @JsonIgnore
     private ExamAttempt examAttempt;
 
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
+
     @Column(name = "score")
     private double points;
 
-    public StudentAnswer(List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, double points) {
+    public StudentAnswer(List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, Question question, double points) {
         this.questionAnswers = questionAnswers;
         this.examAttempt = examAttempt;
         this.points = points;
+        this.question = question;
     }
 
     // Getters and setters
+
 }

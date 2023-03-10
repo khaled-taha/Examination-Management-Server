@@ -8,4 +8,5 @@ import java.util.List;
 public interface ExamAttemptRepository extends JpaRepository<ExamAttempt, Long> {
 
     List<ExamAttempt> getAllExamAttemptByUserId(long userId);
+
 }

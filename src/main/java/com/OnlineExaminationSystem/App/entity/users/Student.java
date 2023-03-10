@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.users;
 
+import com.OnlineExaminationSystem.App.entity.Exam.Group;
 import com.OnlineExaminationSystem.App.entity.validation.Year;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,9 +20,7 @@ import java.io.Serializable;
 @DiscriminatorValue("student")
 public class Student extends User implements Serializable {
 
-    @Range(min = 1, max = 4)
-    @Column(name = "year")
-    private byte year;
-
-
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 }

@@ -24,7 +24,7 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column(name = "examName", unique = true)
     private String examName;
@@ -43,9 +43,16 @@ public class Exam {
     @Column(name = "successRate")
     private double successRate;
 
+    @Column(name = "state")
+    private boolean state = false;
+
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Question> questions = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
     // getters and setters
 }

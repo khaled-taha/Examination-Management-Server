@@ -1,6 +1,7 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "groups_id")
+    @JsonIgnore
     private Group group;
 
 

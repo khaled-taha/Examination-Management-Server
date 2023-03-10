@@ -6,15 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="324c6ba2-3b72-42f0-85a3-9087408023f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/CourseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/GroupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/GroupController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/ExamResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/ExamResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ResultService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/GroupRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/GroupService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

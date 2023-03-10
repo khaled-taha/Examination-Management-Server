@@ -28,7 +28,4 @@ public class GroupService {
         return this.groupRepository.findAll();
     }
 
-    public List<Group> getGroupByUserId(long examId){
-        return this.groupRepository.findGroupsByExamId(examId);
-    }
 }

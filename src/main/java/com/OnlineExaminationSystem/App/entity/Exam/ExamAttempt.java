@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
 @Table(name = "ExamAttempt", schema = "public")
 @NoArgsConstructor
 @Setter

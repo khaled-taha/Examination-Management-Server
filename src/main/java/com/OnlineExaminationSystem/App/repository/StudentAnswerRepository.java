@@ -8,6 +8,6 @@ import java.util.List;
 public interface StudentAnswerRepository extends JpaRepository<StudentAnswer, Long> {
 
     List<StudentAnswer> findAllByExamAttemptId(long examAttemptId);
-
+    StudentAnswer findByExamAttemptIdAndQuestionId(Long attemptId, Long questionId);
 
 }

@@ -2,9 +2,11 @@ package com.OnlineExaminationSystem.App.entity.Exam;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -25,8 +27,12 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "groups_id")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Group group;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Exam> exams;
 
 
 

@@ -4,7 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="324c6ba2-3b72-42f0-85a3-9087408023f6" name="Changes" comment="" />
+    <list default="true" id="324c6ba2-3b72-42f0-85a3-9087408023f6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/controller/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/controller/ExamController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/controller/ExamController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/controller/StudentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/controller/StudentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/Exam.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/Exam.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/ExamAttempt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/ExamAttempt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/ExamResult.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/ExamResult.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/QuestionAnswer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/QuestionAnswer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/StudentAnswer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/Exam/StudentAnswer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/entity/users/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/ExamRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/ExamRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/ExamResultRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/ExamResultRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/QuestionAnswerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/QuestionAnswerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/StudentAnswerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/repository/StudentAnswerRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/ExamService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/ExamService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/StudentAnswerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/StudentAnswerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/OnlineExaminationSystem/App/service/StudentService.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

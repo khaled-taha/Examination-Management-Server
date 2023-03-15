@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonIgnore
     private Exam exam;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)

@@ -59,6 +59,14 @@ public class StudentAnswerService {
                     List<QuestionAnswer> correctedAnswers =
                             this.questionAnswerRepository.findAllByQuestionId(answer.getQuestionId());
 
+                    // Are there student answers for this question ?
+                    StudentAnswer studentAnswer = null;
+                    if(correctedAnswers.size() > 0) {
+                        studentAnswer = this.studentAnswerRepository.
+                                findByExamAttemptIdAndQuestionId(attemptId, correctedAnswers.get(0).getQuestion().getId());
+                    }
+
+
                     // selected Answers
                     List<QuestionAnswer> selectedAnswers = correctedAnswers.stream()
                             .filter((questionAnswer) -> answer.getAnswersIds().contains(questionAnswer.getId()))
@@ -78,8 +86,13 @@ public class StudentAnswerService {
                     BigDecimal answerPoints = (questionPoints.divide(BigDecimal.valueOf(correctAnswerCount)))
                             .multiply(BigDecimal.valueOf(selectedAnswersCount));
 
-                    studentAnswers.add(new StudentAnswer(selectedAnswers, attempt.get(), correctedAnswers.get(0).getQuestion()
-                            , answerPoints.doubleValue()));
+                    studentAnswers.add(
+                            new StudentAnswer(
+                                    studentAnswer != null ? studentAnswer.getId() : 0,
+                                    selectedAnswers, attempt.get(),
+                                    correctedAnswers.get(0).getQuestion(),
+                                    answerPoints.doubleValue()
+                            ));
                 }
         );
         this.studentAnswerRepository.saveAll(studentAnswers);
@@ -96,6 +109,13 @@ public class StudentAnswerService {
             QuestionAnswer correctedAnswers =
                     this.questionAnswerRepository.findById(answer.getQuestionId()).get();
 
+            // Are there student answers for this question ?
+            StudentAnswer studentAnswer = null;
+            if(correctedAnswers != null) {
+                studentAnswer = this.studentAnswerRepository.
+                        findByExamAttemptIdAndQuestionId(attemptId, correctedAnswers.getQuestion().getId());
+            }
+
             // get the total points
             BigDecimal questionPoints = BigDecimal.valueOf(correctedAnswers.getQuestion().getPoints());
 
@@ -104,8 +124,13 @@ public class StudentAnswerService {
             // calculate the points of the answer
             double points = checkedAnswer ? questionPoints.doubleValue() : 0;
 
-            studentAnswers.add(new StudentAnswer(Arrays.asList(correctedAnswers), attempt, correctedAnswers.getQuestion(),
-                    points));
+            studentAnswers.add(new StudentAnswer(
+                    studentAnswer != null ? studentAnswer.getId() : 0,
+                    Arrays.asList(correctedAnswers),
+                    attempt,
+                    correctedAnswers.getQuestion(),
+                    points
+            ));
         });
 
         this.studentAnswerRepository.saveAll(studentAnswers);
@@ -115,8 +140,6 @@ public class StudentAnswerService {
     public List<StudentAnswer> getAllAnswers(long attemptId){
         return this.studentAnswerRepository.findAllByExamAttemptId(attemptId);
     }
-
-
 
 
 }

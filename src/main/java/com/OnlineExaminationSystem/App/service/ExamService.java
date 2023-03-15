@@ -43,7 +43,17 @@ public class ExamService {
         return this.examRepository.save(exam);
     }
     public List<Exam> getAllExams() {
-        return this.examRepository.findAll();
+        List<Exam> exams = this.examRepository.findAll();
+        exams.stream().forEach((exam) -> {
+
+            if((LocalDateTime.now().equals(exam.getStartTime()) || (LocalDateTime.now().isAfter(exam.getStartTime())))
+                    && (LocalDateTime.now().isBefore(exam.getEndTime())))
+                exam.setState(true);
+            else
+                exam.setState(false);
+        });
+
+        return exams;
     }
     public Exam getExamById(long id){
         return this.examRepository.findExamById(id)
@@ -76,15 +86,17 @@ public class ExamService {
             this.attemptRepository.save(attempt.get());
         }
     }
-    public List<Question> saveQuestions(List<Question> questions) {
+    public List<Question> saveQuestions(List<Question> questions, Long examId) {
 
-        Exam exam = questions.get(0).getExam();
+        Exam exam = this.examRepository.findExamById(examId).get();
         exam.setQuestions(questions);
 
-        questions.stream().forEach(question ->
-                question.getQuestionAnswers().stream().
-                        forEach(answer -> answer.setQuestion(question))
-        );
+        questions.stream().forEach(question -> {
+            question.setExam(exam);
+            question.getQuestionAnswers().stream().
+                    forEach(answer -> answer.setQuestion(question));
+
+        });
 
         return this.examRepository.save(exam).getQuestions();
     }
@@ -118,7 +130,8 @@ public class ExamService {
 
             question.getQuestionAnswers().stream().forEach((answer) -> {
 
-                questionAnswerDto.add(QuestionAnswerDto.builder()
+                questionAnswerDto.add(QuestionAnswerDto
+                        .builder()
                         .id(answer.getId())
                         .answerText((answer.getQuestion().getQuestionType() != QuestionType.Matching)
                                 ? answer.getAnswerText() : null)
@@ -126,7 +139,8 @@ public class ExamService {
             });
 
             // set questions
-            questionDto.add(QuestionDto.builder()
+            questionDto.add(QuestionDto
+                    .builder()
                     .id(question.getId())
                     .points(question.getPoints())
                     .questionType(question.getQuestionType().name())
@@ -135,7 +149,7 @@ public class ExamService {
                     .build());
         });
 
-        System.out.println(questionDto);
+
 
         return ExamDto.builder()
                 .id(exam.getId())
@@ -150,5 +164,4 @@ public class ExamService {
     public List<Exam> getAllExamsByCourseId(Long courseId) {
         return examRepository.findAllExamsByCourseId(courseId);
     }
-
 }

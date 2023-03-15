@@ -58,9 +58,10 @@ public class ExamController {
     }
 
     // save question
-    @PostMapping(path = "/saveQuestions")
-    public ResponseEntity<List<Question>> saveQuestions(@RequestBody List<Question> questions){
-        List<Question> savedQuestions = this.examService.saveQuestions(questions);
+    @PostMapping(path = "/saveQuestions/{examId}")
+    public ResponseEntity<List<Question>> saveQuestions(@RequestBody List<Question> questions,
+                                                        @PathVariable("examId") Long examId){
+        List<Question> savedQuestions = this.examService.saveQuestions(questions, examId);
         return new ResponseEntity<>(savedQuestions, HttpStatus.OK);
     }
 
@@ -149,6 +150,5 @@ public class ExamController {
         List<Exam> exams = examService.getAllExamsByCourseId(courseId);
         return ResponseEntity.ok(exams);
     }
-
 
 }

@@ -39,7 +39,8 @@ public class StudentAnswer {
     @Column(name = "score")
     private double points;
 
-    public StudentAnswer(List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, Question question, double points) {
+    public StudentAnswer(Long id, List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, Question question, double points) {
+        this.id = id;
         this.questionAnswers = questionAnswers;
         this.examAttempt = examAttempt;
         this.points = points;

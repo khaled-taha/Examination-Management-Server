@@ -1,9 +1,11 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "groups", schema = "public")
@@ -17,4 +19,8 @@ public class Group {
 
     @Column(name = "name", unique = true, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Course> courses;
 }

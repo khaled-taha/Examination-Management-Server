@@ -1,6 +1,7 @@
 package com.OnlineExaminationSystem.App.controller;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Course;
+import com.OnlineExaminationSystem.App.entity.dto.CourseDto;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.CourseService;
 import lombok.AllArgsConstructor;
@@ -29,8 +30,8 @@ public class CourseController {
         }
     }
 
-    @DeleteMapping("/{groupId}")
-    public ResponseEntity<Void> deleteGroup(@PathVariable("groupId") long courseId){
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<Void> deleteCourse(@PathVariable("courseId") long courseId){
         try {
             this.courseService.deleteCourse(courseId);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -54,6 +55,18 @@ public class CourseController {
         try {
             List<Course> courses = courseService.getCoursesByGroupId(groupId);
             return new ResponseEntity<>(courses, HttpStatus.OK);
+        }catch (ApiException ex){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+    @PostMapping("manage/{courseId}")
+    public ResponseEntity<CourseDto> assignToAdmins(@RequestBody List<Long> adminIds,
+                                                    @PathVariable("courseId") Long courseId){
+        try {
+            CourseDto savedCourse = this.courseService.assignToAdmins(adminIds, courseId);
+            return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

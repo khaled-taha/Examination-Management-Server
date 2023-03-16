@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,6 +19,7 @@ public class Group {
     private Long id;
 
     @Column(name = "name", unique = true, nullable = false)
+    @NotNull
     private String name;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)

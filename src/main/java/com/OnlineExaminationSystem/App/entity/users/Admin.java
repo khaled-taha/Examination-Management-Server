@@ -25,11 +25,5 @@ public class Admin extends User implements Serializable {
     @NotBlank
     private String specialization;
 
-    @ManyToMany
-    @NotNull
-    @JoinTable(name = "admin_groups",
-            joinColumns = @JoinColumn(name = "admin_id"),
-            inverseJoinColumns = @JoinColumn(name = "groups_id"))
-    private Set<Group> groups = new HashSet<>();
 
 }

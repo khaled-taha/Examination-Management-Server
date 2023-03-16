@@ -1,6 +1,7 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
 
+import com.OnlineExaminationSystem.App.entity.users.Admin;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -33,6 +34,13 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Exam> exams;
+
+    @ManyToMany
+    @JoinTable(name = "admin_courses",
+            joinColumns = @JoinColumn(name = "admin_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private List<Admin> admins;
 
 
 

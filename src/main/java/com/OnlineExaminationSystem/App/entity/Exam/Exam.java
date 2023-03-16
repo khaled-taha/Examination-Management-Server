@@ -27,7 +27,7 @@ public class Exam {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "examName", unique = true)
+    @Column(name = "examName", unique = true, nullable = false)
     private String examName;
 
     @Column(name = "duration")

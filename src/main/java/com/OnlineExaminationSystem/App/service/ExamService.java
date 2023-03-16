@@ -56,8 +56,15 @@ public class ExamService {
         return exams;
     }
     public Exam getExamById(long id){
-        return this.examRepository.findExamById(id)
+        Exam exam =  this.examRepository.findExamById(id)
                 .orElseThrow(() -> new ApiException("Exam Not found"));
+
+        if((LocalDateTime.now().equals(exam.getStartTime()) || (LocalDateTime.now().isAfter(exam.getStartTime())))
+                && (LocalDateTime.now().isBefore(exam.getEndTime())))
+            exam.setState(true);
+        else
+            exam.setState(false);
+        return exam;
     }
     public void deleteExam(Exam exam){
         this.questionRepository.deleteAllByExamId(exam.getId());
@@ -69,7 +76,8 @@ public class ExamService {
 
 
         if(user.isPresent() && exam.isPresent()
-                && (LocalDateTime.now().equals(exam.get().getStartTime()) || (LocalDateTime.now().isAfter(exam.get().getStartTime())))
+                && (LocalDateTime.now().equals(exam.get().getStartTime()) ||
+                (LocalDateTime.now().isAfter(exam.get().getStartTime())))
                 && (LocalDateTime.now().isBefore(exam.get().getEndTime()))) {
 
             ExamAttempt examAttempt = new ExamAttempt();

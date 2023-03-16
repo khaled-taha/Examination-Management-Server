@@ -41,9 +41,9 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Course>> getAllCourses(){
+    public ResponseEntity<List<CourseDto>> getAllCourses(){
         try {
-            List<Course> courses =  this.courseService.getAll();
+            List<CourseDto> courses =  this.courseService.getAll();
             return new ResponseEntity<>(courses, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,9 +51,9 @@ public class CourseController {
     }
 
     @GetMapping("/{groupId}")
-    public ResponseEntity<List<Course>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
+    public ResponseEntity<List<CourseDto>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
         try {
-            List<Course> courses = courseService.getCoursesByGroupId(groupId);
+            List<CourseDto> courses = courseService.getCoursesByGroupId(groupId);
             return new ResponseEntity<>(courses, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -71,7 +71,6 @@ public class CourseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
 
 
 }

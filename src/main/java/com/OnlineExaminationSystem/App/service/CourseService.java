@@ -21,8 +21,13 @@ public class CourseService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public Course saveCourse(Course course){
-        return this.courseRepository.save(course);
+    public CourseDto saveCourse(Course course, List<Long> adminIds){
+        List<Admin> admins = this.adminRepository.findAllById(adminIds);
+        course.setAdmins(admins);
+
+        Course savedCourse = this.courseRepository.save(course);
+
+        return CourseDto.getCourseDto(course, admins);
     }
 
     public void deleteCourse(long courseId){

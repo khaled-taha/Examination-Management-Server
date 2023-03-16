@@ -21,9 +21,9 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<Course> saveCourse(@RequestBody Course course){
+    public ResponseEntity<CourseDto> saveCourse(@RequestBody Course course, @RequestBody List<Long> adminIds){
         try {
-            Course savedCourse = this.courseService.saveCourse(course);
+            CourseDto savedCourse = this.courseService.saveCourse(course, adminIds);
             return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

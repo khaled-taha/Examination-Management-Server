@@ -59,7 +59,7 @@ public class CourseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
+/*
 
     @PostMapping("manage/{courseId}")
     public ResponseEntity<CourseDto> assignToAdmins(@RequestBody List<Long> adminIds,
@@ -71,6 +71,6 @@ public class CourseController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
+*/
 
 }

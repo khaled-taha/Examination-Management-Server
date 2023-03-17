@@ -28,8 +28,10 @@ public class CourseService {
         List<Admin> admins = this.adminRepository.findAllById(course.getAdminIds());
         Optional<Course> savedCourse = this.courseRepository.findById(course.getId());
 
-        if(!savedCourse.isPresent())
+        if(!savedCourse.isPresent()) {
             savedCourse = Optional.of(new Course());
+            course.setId(0L);
+        }
 
         savedCourse.get().setId(course.getId());
         savedCourse.get().setName(course.getName());

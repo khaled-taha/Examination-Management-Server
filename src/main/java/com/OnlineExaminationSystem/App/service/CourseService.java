@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -25,15 +26,18 @@ public class CourseService {
 
     public RequestCourseDto saveCourse(ResponseCourseDto course){
         List<Admin> admins = this.adminRepository.findAllById(course.getAdminIds());
-        Course savedCourse = this.courseRepository.findById(course.getId()).get();
+        Optional<Course> savedCourse = this.courseRepository.findById(course.getId());
 
-        savedCourse.setId(course.getId());
-        savedCourse.setName(course.getName());
-        savedCourse.setCode(course.getCode());
-        savedCourse.setGroup(course.getGroup());
-        savedCourse.setAdmins(admins);
+        if(!savedCourse.isPresent())
+            savedCourse = Optional.of(new Course());
 
-        Course responseCourse = this.courseRepository.save(savedCourse);
+        savedCourse.get().setId(course.getId());
+        savedCourse.get().setName(course.getName());
+        savedCourse.get().setCode(course.getCode());
+        savedCourse.get().setGroup(course.getGroup());
+        savedCourse.get().setAdmins(admins);
+
+        Course responseCourse = this.courseRepository.save(savedCourse.get());
 
         return RequestCourseDto.getCourseDto(responseCourse, admins);
     }

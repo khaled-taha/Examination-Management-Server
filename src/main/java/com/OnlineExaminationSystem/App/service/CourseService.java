@@ -1,7 +1,8 @@
 package com.OnlineExaminationSystem.App.service;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Course;
-import com.OnlineExaminationSystem.App.entity.dto.CourseDto;
+import com.OnlineExaminationSystem.App.entity.dto.RequestCourseDto;
+import com.OnlineExaminationSystem.App.entity.dto.ResponseCourseDto;
 import com.OnlineExaminationSystem.App.entity.users.Admin;
 import com.OnlineExaminationSystem.App.repository.AdminRepository;
 import com.OnlineExaminationSystem.App.repository.CourseRepository;
@@ -22,39 +23,45 @@ public class CourseService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public CourseDto saveCourse(Course course, List<Long> adminIds){
-        List<Admin> admins = this.adminRepository.findAllById(adminIds);
-        course.setAdmins(admins);
+    public RequestCourseDto saveCourse(ResponseCourseDto course){
+        List<Admin> admins = this.adminRepository.findAllById(course.getAdminIds());
+        Course savedCourse = this.courseRepository.findById(course.getId()).get();
 
-        Course savedCourse = this.courseRepository.save(course);
+        savedCourse.setId(course.getId());
+        savedCourse.setName(course.getName());
+        savedCourse.setCode(course.getCode());
+        savedCourse.setGroup(course.getGroup());
+        savedCourse.setAdmins(admins);
 
-        return CourseDto.getCourseDto(course, admins);
+        Course responseCourse = this.courseRepository.save(savedCourse);
+
+        return RequestCourseDto.getCourseDto(responseCourse, admins);
     }
 
     public void deleteCourse(long courseId){
         this.courseRepository.deleteById(courseId);
     }
 
-    public CourseDto assignToAdmins(List<Long> adminIds, Long courseId){
+    public RequestCourseDto assignToAdmins(List<Long> adminIds, Long courseId){
         List<Admin> admins = this.adminRepository.findAllById(adminIds);
         Course course = this.courseRepository.findById(courseId).get();
         course.setAdmins(admins);
 
         this.courseRepository.save(course);
 
-        return CourseDto.getCourseDto(course, admins);
+        return RequestCourseDto.getCourseDto(course, admins);
     }
 
-    public List<CourseDto> getAll(){
-        List<CourseDto> courseDtos = new ArrayList<>();
+    public List<RequestCourseDto> getAll(){
+        List<RequestCourseDto> courseDtos = new ArrayList<>();
         List<Course> courses = this.courseRepository.findAll();
-        courses.stream().forEach((course -> {courseDtos.add(CourseDto.getCourseDto(course, course.getAdmins()));}));
+        courses.stream().forEach((course -> {courseDtos.add(RequestCourseDto.getCourseDto(course, course.getAdmins()));}));
         return courseDtos;
     }
-    public List<CourseDto> getCoursesByGroupId(Long groupId) {
-        List<CourseDto> courseDtos = new ArrayList<>();
+    public List<RequestCourseDto> getCoursesByGroupId(Long groupId) {
+        List<RequestCourseDto> courseDtos = new ArrayList<>();
         List<Course> courses = courseRepository.findAllByGroupId(groupId);
-        courses.stream().forEach((course -> {courseDtos.add(CourseDto.getCourseDto(course, course.getAdmins()));}));
+        courses.stream().forEach((course -> {courseDtos.add(RequestCourseDto.getCourseDto(course, course.getAdmins()));}));
         return courseDtos;
     }
 }

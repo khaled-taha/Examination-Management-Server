@@ -1,7 +1,7 @@
 package com.OnlineExaminationSystem.App.controller;
 
-import com.OnlineExaminationSystem.App.entity.Exam.Course;
-import com.OnlineExaminationSystem.App.entity.dto.CourseDto;
+import com.OnlineExaminationSystem.App.entity.dto.RequestCourseDto;
+import com.OnlineExaminationSystem.App.entity.dto.ResponseCourseDto;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.CourseService;
 import lombok.AllArgsConstructor;
@@ -21,9 +21,9 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<CourseDto> saveCourse(@RequestBody Course course, @RequestBody List<Long> adminIds){
+    public ResponseEntity<RequestCourseDto> saveCourse(@RequestBody ResponseCourseDto course){
         try {
-            CourseDto savedCourse = this.courseService.saveCourse(course, adminIds);
+            RequestCourseDto savedCourse = this.courseService.saveCourse(course);
             return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -41,9 +41,9 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CourseDto>> getAllCourses(){
+    public ResponseEntity<List<RequestCourseDto>> getAllCourses(){
         try {
-            List<CourseDto> courses =  this.courseService.getAll();
+            List<RequestCourseDto> courses =  this.courseService.getAll();
             return new ResponseEntity<>(courses, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,9 +51,9 @@ public class CourseController {
     }
 
     @GetMapping("/{groupId}")
-    public ResponseEntity<List<CourseDto>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
+    public ResponseEntity<List<RequestCourseDto>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
         try {
-            List<CourseDto> courses = courseService.getCoursesByGroupId(groupId);
+            List<RequestCourseDto> courses = courseService.getCoursesByGroupId(groupId);
             return new ResponseEntity<>(courses, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -30,7 +30,6 @@ public class CourseService {
 
         if(!savedCourse.isPresent()) {
             savedCourse = Optional.of(new Course());
-            course.setId(0L);
         }
 
         savedCourse.get().setId(course.getId());

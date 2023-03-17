@@ -8,7 +8,7 @@ import java.util.Set;
 @Data
 public class ResponseCourseDto {
 
-    private Long id;
+    private long id;
     private String name;
     private String code;
     private Group group;

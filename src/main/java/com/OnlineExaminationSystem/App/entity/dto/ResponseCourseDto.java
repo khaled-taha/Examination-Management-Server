@@ -18,7 +18,8 @@ public class ResponseCourseDto {
     private String groupName;
     private List<AdminDto> admins;
 
-    public ResponseCourseDto(String courseName, String courseCode, String groupName, List<AdminDto> admins) {
+    public ResponseCourseDto(long id, String courseName, String courseCode, String groupName, List<AdminDto> admins) {
+        this.id = id;
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.groupName = groupName;
@@ -26,7 +27,7 @@ public class ResponseCourseDto {
     }
 
     public static ResponseCourseDto getCourseDto(Course course, List<Admin> admins){
-        return new ResponseCourseDto(course.getName(), course.getCode()
+        return new ResponseCourseDto(course.getId(), course.getName(), course.getCode()
                 , course.getGroup().getName(), AdminDto.getAdmins(admins));
     }
 

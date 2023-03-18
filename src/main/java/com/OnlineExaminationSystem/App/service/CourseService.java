@@ -38,6 +38,8 @@ public class CourseService {
         savedCourse.get().setGroup(course.getGroup());
         savedCourse.get().setAdmins(admins);
 
+        System.out.println(course.getCode());
+
         Course responseCourse = this.courseRepository.save(savedCourse.get());
 
         return RequestCourseDto.getCourseDto(responseCourse, admins);

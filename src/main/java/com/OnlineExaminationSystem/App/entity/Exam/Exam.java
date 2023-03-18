@@ -23,7 +23,8 @@ import java.util.List;
 public class Exam {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "exam_sequence", sequenceName = "exam_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "exam_sequence")
     @Column(name = "id")
     private Long id;
 

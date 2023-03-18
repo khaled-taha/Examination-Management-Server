@@ -18,7 +18,8 @@ import java.util.List;
 public class StudentAnswer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "student_answer_sequence", sequenceName = "student_answer_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_answer_sequence")
     private Long id;
 
     @ManyToMany

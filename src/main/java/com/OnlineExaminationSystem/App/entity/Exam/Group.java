@@ -14,7 +14,8 @@ import java.util.List;
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "groups_sequence", sequenceName = "groups_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "groups_sequence")
     @Column(name = "id")
     private Long id;
 

@@ -38,7 +38,7 @@ public class ExamController {
     }
 
     @GetMapping(path = "/getAll")
-    public ResponseEntity<List<Exam>> getExamById(){
+    public ResponseEntity<List<Exam>> getAll(){
         List<Exam> exams = this.examService.getAllExams();
         return new ResponseEntity<>(exams, HttpStatus.OK);
     }
@@ -56,6 +56,13 @@ public class ExamController {
         this.examService.deleteExam(exam);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "/delete/{examId}")
+    public ResponseEntity<?> deleteExam(@PathVariable("examId") Long examId){
+        this.examService.deleteExam(examId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
     // save question
     @PostMapping(path = "/saveQuestions/{examId}")

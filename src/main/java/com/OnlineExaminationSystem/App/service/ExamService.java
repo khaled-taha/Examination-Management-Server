@@ -70,6 +70,11 @@ public class ExamService {
         this.questionRepository.deleteAllByExamId(exam.getId());
         this.examRepository.delete(exam);
     }
+
+    public void deleteExam(long id){
+        this.examRepository.deleteById(id);
+    }
+
     public ExamAttempt attemptExam(long userId, long examId){
         Optional<Exam> exam =  this.examRepository.findExamById(examId);
         Optional<User> user = this.userRepository.findById(userId);
@@ -170,6 +175,17 @@ public class ExamService {
                 .build();
     }
     public List<Exam> getAllExamsByCourseId(Long courseId) {
-        return examRepository.findAllExamsByCourseId(courseId);
+
+        List<Exam> exams = examRepository.findAllExamsByCourseId(courseId);
+        exams.stream().forEach((exam) -> {
+
+            if((LocalDateTime.now().equals(exam.getStartTime()) || (LocalDateTime.now().isAfter(exam.getStartTime())))
+                    && (LocalDateTime.now().isBefore(exam.getEndTime())))
+                exam.setState(true);
+            else
+                exam.setState(false);
+        });
+
+        return exams;
     }
 }

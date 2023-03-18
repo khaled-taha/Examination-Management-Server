@@ -21,9 +21,9 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<RequestCourseDto> saveCourse(@RequestBody ResponseCourseDto course){
+    public ResponseEntity<ResponseCourseDto> saveCourse(@RequestBody RequestCourseDto course){
         try {
-            RequestCourseDto savedCourse = this.courseService.saveCourse(course);
+            ResponseCourseDto savedCourse = this.courseService.saveCourse(course);
             return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -41,9 +41,9 @@ public class CourseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RequestCourseDto>> getAllCourses(){
+    public ResponseEntity<List<ResponseCourseDto>> getAllCourses(){
         try {
-            List<RequestCourseDto> courses =  this.courseService.getAll();
+            List<ResponseCourseDto> courses =  this.courseService.getAll();
             return new ResponseEntity<>(courses, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,9 +51,9 @@ public class CourseController {
     }
 
     @GetMapping("/{groupId}")
-    public ResponseEntity<List<RequestCourseDto>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
+    public ResponseEntity<List<ResponseCourseDto>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
         try {
-            List<RequestCourseDto> courses = courseService.getCoursesByGroupId(groupId);
+            List<ResponseCourseDto> courses = courseService.getCoursesByGroupId(groupId);
             return new ResponseEntity<>(courses, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

@@ -24,7 +24,7 @@ public class CourseService {
     @Autowired
     private AdminRepository adminRepository;
 
-    public RequestCourseDto saveCourse(ResponseCourseDto course){
+    public ResponseCourseDto saveCourse(RequestCourseDto course){
         List<Admin> admins = this.adminRepository.findAllById(course.getAdminIds());
         Optional<Course> savedCourse = this.courseRepository.findById(course.getId());
 
@@ -42,33 +42,33 @@ public class CourseService {
 
         Course responseCourse = this.courseRepository.save(savedCourse.get());
 
-        return RequestCourseDto.getCourseDto(responseCourse, admins);
+        return ResponseCourseDto.getCourseDto(responseCourse, admins);
     }
 
     public void deleteCourse(long courseId){
         this.courseRepository.deleteById(courseId);
     }
 
-    public RequestCourseDto assignToAdmins(List<Long> adminIds, Long courseId){
+    public ResponseCourseDto assignToAdmins(List<Long> adminIds, Long courseId){
         List<Admin> admins = this.adminRepository.findAllById(adminIds);
         Course course = this.courseRepository.findById(courseId).get();
         course.setAdmins(admins);
 
         this.courseRepository.save(course);
 
-        return RequestCourseDto.getCourseDto(course, admins);
+        return ResponseCourseDto.getCourseDto(course, admins);
     }
 
-    public List<RequestCourseDto> getAll(){
-        List<RequestCourseDto> courseDtos = new ArrayList<>();
+    public List<ResponseCourseDto> getAll(){
+        List<ResponseCourseDto> courseDtos = new ArrayList<>();
         List<Course> courses = this.courseRepository.findAll();
-        courses.stream().forEach((course -> {courseDtos.add(RequestCourseDto.getCourseDto(course, course.getAdmins()));}));
+        courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course, course.getAdmins()));}));
         return courseDtos;
     }
-    public List<RequestCourseDto> getCoursesByGroupId(Long groupId) {
-        List<RequestCourseDto> courseDtos = new ArrayList<>();
+    public List<ResponseCourseDto> getCoursesByGroupId(Long groupId) {
+        List<ResponseCourseDto> courseDtos = new ArrayList<>();
         List<Course> courses = courseRepository.findAllByGroupId(groupId);
-        courses.stream().forEach((course -> {courseDtos.add(RequestCourseDto.getCourseDto(course, course.getAdmins()));}));
+        courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course, course.getAdmins()));}));
         return courseDtos;
     }
 }

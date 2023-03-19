@@ -4,6 +4,7 @@ import com.OnlineExaminationSystem.App.entity.Exam.Course;
 import com.OnlineExaminationSystem.App.entity.dto.RequestCourseDto;
 import com.OnlineExaminationSystem.App.entity.dto.ResponseCourseDto;
 import com.OnlineExaminationSystem.App.entity.users.Admin;
+import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.AdminRepository;
 import com.OnlineExaminationSystem.App.repository.CourseRepository;
 import lombok.AllArgsConstructor;
@@ -70,5 +71,11 @@ public class CourseService {
         List<Course> courses = courseRepository.findAllByGroupId(groupId);
         courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course, course.getAdmins()));}));
         return courseDtos;
+    }
+
+    public ResponseCourseDto getCoursesById(Long courseId) {
+        Optional<Course> course = courseRepository.findById(courseId);
+        if(!course.isPresent()) throw new ApiException("Course not found");
+        return ResponseCourseDto.getCourseDto(course.get(), course.get().getAdmins());
     }
 }

@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.controller;
 
+import com.OnlineExaminationSystem.App.entity.Exam.Course;
 import com.OnlineExaminationSystem.App.entity.dto.RequestCourseDto;
 import com.OnlineExaminationSystem.App.entity.dto.ResponseCourseDto;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/courses")
@@ -45,6 +47,16 @@ public class CourseController {
         try {
             List<ResponseCourseDto> courses =  this.courseService.getAll();
             return new ResponseEntity<>(courses, HttpStatus.OK);
+        }catch (ApiException ex){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/{courseId}")
+    public ResponseEntity<ResponseCourseDto> getCoursesById(@PathVariable("courseId") long courseId) {
+        try {
+            ResponseCourseDto course = courseService.getCoursesById(courseId);
+            return new ResponseEntity<>(course, HttpStatus.OK);
         }catch (ApiException ex){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

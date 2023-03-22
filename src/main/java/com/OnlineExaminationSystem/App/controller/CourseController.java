@@ -62,7 +62,7 @@ public class CourseController {
         }
     }
 
-    @GetMapping("/{groupId}")
+    @GetMapping("/groupCourses/{groupId}")
     public ResponseEntity<List<ResponseCourseDto>> getCoursesByGroupId(@PathVariable("groupId") long groupId) {
         try {
             List<ResponseCourseDto> courses = courseService.getCoursesByGroupId(groupId);

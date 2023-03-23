@@ -136,7 +136,7 @@ public class ExamService {
         Exam exam = this.getExamById(examId);
 
         List<Question> questions = exam.getQuestions();
-        List<QuestionDto> questionDto = new ArrayList<>();
+        List<QuestionDto> questionsDto = new ArrayList<>();
 
         questions.stream().forEach((question) -> {
 
@@ -144,37 +144,14 @@ public class ExamService {
             List<QuestionAnswerDto> questionAnswerDto = new ArrayList<>();
 
             question.getQuestionAnswers().stream().forEach((answer) -> {
-
-                questionAnswerDto.add(QuestionAnswerDto
-                        .builder()
-                        .id(answer.getId())
-                        .answerText((answer.getQuestion().getQuestionType() != QuestionType.Matching)
-                                ? answer.getAnswerText() : null)
-                        .build());
+                questionAnswerDto.add(QuestionAnswerDto.mapToQuestionAnswer(answer));
             });
 
             // set questions
-            questionDto.add(QuestionDto
-                    .builder()
-                    .id(question.getId())
-                    .points(question.getPoints())
-                    .questionType(question.getQuestionType().name())
-                    .questionText(question.getQuestionText())
-                    .questionAnswers(questionAnswerDto)
-                    .build());
+            questionsDto.add(QuestionDto.mapToQuestion(question, questionAnswerDto));
         });
 
-
-
-        return ExamDto.builder()
-                .id(exam.getId())
-                .examName(exam.getExamName())
-                .duration(exam.getDuration())
-                .startTime(exam.getStartTime())
-                .endTime(exam.getEndTime())
-                .successRate(exam.getSuccessRate())
-                .questions(questionDto)
-                .build();
+        return ExamDto.mapToExam(exam, questionsDto);
     }
     public List<Exam> getAllExamsByCourseId(Long courseId) {
 

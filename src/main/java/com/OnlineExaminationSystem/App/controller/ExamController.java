@@ -1,6 +1,7 @@
 package com.OnlineExaminationSystem.App.controller;
 
 import com.OnlineExaminationSystem.App.entity.Exam.*;
+import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
 import com.OnlineExaminationSystem.App.entity.dto.studentAnswer.CompleteStudentAnswerDto;
 import com.OnlineExaminationSystem.App.entity.dto.studentAnswer.ExamResultDto;
@@ -88,10 +89,9 @@ public class ExamController {
 
     // Attempt the exam
     @PostMapping(path = "/attemptExam/{examId}/{userId}")
-    public ResponseEntity<ExamAttempt> attemptExam(@PathVariable("examId") long examId,
-                                                   @PathVariable("userId") long userId){
-        ExamAttempt attempt = this.examService.attemptExam(userId, examId);
-        System.out.println(attempt);
+    public ResponseEntity<ExamAttemptDto> attemptExam(@PathVariable("examId") long examId,
+                                                      @PathVariable("userId") long userId){
+        ExamAttemptDto attempt = this.examService.attemptExam(userId, examId);
         return new ResponseEntity<>(attempt, HttpStatus.OK);
     }
 

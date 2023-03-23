@@ -4,6 +4,7 @@ import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
 import com.OnlineExaminationSystem.App.entity.Exam.Question;
 import com.OnlineExaminationSystem.App.entity.Exam.QuestionType;
+import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionAnswerDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionDto;
@@ -75,7 +76,7 @@ public class ExamService {
         this.examRepository.deleteById(id);
     }
 
-    public ExamAttempt attemptExam(long userId, long examId){
+    public ExamAttemptDto attemptExam(long userId, long examId){
         Optional<Exam> exam =  this.examRepository.findExamById(examId);
         Optional<User> user = this.userRepository.findById(userId);
 
@@ -88,7 +89,8 @@ public class ExamService {
             ExamAttempt examAttempt = new ExamAttempt();
             examAttempt.setUser(user.get());
             examAttempt.setExam(exam.get());
-            return this.attemptRepository.save(examAttempt);
+            examAttempt =  this.attemptRepository.save(examAttempt);
+            return ExamAttemptDto.mapToExamAttemptDto(examAttempt);
         }
         return null;
     }

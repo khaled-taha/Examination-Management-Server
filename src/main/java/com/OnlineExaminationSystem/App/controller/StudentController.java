@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.controller;
 import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
+import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.users.Student;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.StudentService;
@@ -60,8 +61,8 @@ public class StudentController {
 
     @Operation(summary = "To get All Attempts of the student by his id")
     @GetMapping(path = "attempts")
-    public ResponseEntity<List<ExamAttempt>> getAllAttempts(@PathVariable("id") long id){
-        List<ExamAttempt> attempts = this.studentService.getAllAttempts(id);
+    public ResponseEntity<List<ExamAttemptDto>> getAllAttempts(@PathVariable("id") long id){
+        List<ExamAttemptDto> attempts = this.studentService.getAllAttempts(id);
         return new ResponseEntity<>(attempts, HttpStatus.OK);
     }
 

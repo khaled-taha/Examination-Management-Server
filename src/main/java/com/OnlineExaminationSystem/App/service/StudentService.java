@@ -1,6 +1,7 @@
 package com.OnlineExaminationSystem.App.service;
 
 import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
+import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.users.Student;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.ExamAttemptRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -55,8 +57,9 @@ public class StudentService {
         return student;
     }
 
-    public List<ExamAttempt> getAllAttempts(Long studentId){
-        return this.attemptRepository.getAllExamAttemptByUserId(studentId);
+    public List<ExamAttemptDto> getAllAttempts(Long studentId){
+        List<ExamAttempt> examAttempts =  this.attemptRepository.getAllExamAttemptByUserId(studentId);
+        return examAttempts.stream().map(ExamAttemptDto::mapToExamAttemptDto).collect(Collectors.toList());
     }
 
 

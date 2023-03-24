@@ -38,9 +38,9 @@ public class Course {
 
     @ManyToMany
     @JoinTable(name = "admin_courses",
-            joinColumns = @JoinColumn(name = "admin_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "admin_id"))
+    @JsonIgnore
     private List<Admin> admins;
 
 

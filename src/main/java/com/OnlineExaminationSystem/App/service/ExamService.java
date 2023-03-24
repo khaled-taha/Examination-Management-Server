@@ -3,7 +3,6 @@ package com.OnlineExaminationSystem.App.service;
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
 import com.OnlineExaminationSystem.App.entity.Exam.Question;
-import com.OnlineExaminationSystem.App.entity.Exam.QuestionType;
 import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionAnswerDto;
@@ -56,6 +55,8 @@ public class ExamService {
 
         return exams;
     }
+
+
     public Exam getExamById(long id){
         Exam exam =  this.examRepository.findExamById(id)
                 .orElseThrow(() -> new ApiException("Exam Not found"));
@@ -110,11 +111,11 @@ public class ExamService {
             question.setExam(exam);
             question.getQuestionAnswers().stream().
                     forEach(answer -> answer.setQuestion(question));
-
         });
-
         return this.examRepository.save(exam).getQuestions();
     }
+
+
     public List<Question> getExamQuestions(long examId) {
         return this.questionRepository.findAllByExamId(examId);
     }

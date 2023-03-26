@@ -93,7 +93,7 @@ public class ExamService {
             examAttempt =  this.attemptRepository.save(examAttempt);
             return ExamAttemptDto.mapToExamAttemptDto(examAttempt);
         }
-        return null;
+        throw new ApiException("Expired Exam");
     }
     public void endExam(long attemptId){
         Optional<ExamAttempt> attempt = this.attemptRepository.findById(attemptId);

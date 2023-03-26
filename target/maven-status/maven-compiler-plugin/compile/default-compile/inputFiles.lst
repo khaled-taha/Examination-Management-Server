@@ -47,7 +47,6 @@ E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\On
 E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\entity\Exam\StudentAnswer.java
 E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\entity\dto\exam\ExamDto.java
 E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\repository\StudentAnswerRepository.java
-E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\Security\config\WebSecurityConfig.java
 E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\entity\dto\exam\QuestionAnswerDto.java
 E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\entity\dto\RequestCourseDto.java
 E:\Graduation Project\sprints\Examination-Management-Server\src\main\java\com\OnlineExaminationSystem\App\Main.java

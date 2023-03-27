@@ -1,22 +1,26 @@
 version: "3.8"
 services:
   app:
-    build: .
+    container_name: exam-app
+    image: exam-service
+    build: ./
     ports:
       - "8085:8082"
     depends_on:
       - postgres
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/exam-db
-      SPRING_DATASOURCE_USERNAME: exam
+      SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
   ### Postgres Database ###
   postgres:
+    container_name: postgres
     image: postgres:10.4
+    hostname: postgres
     ports:
-      - "27018:5432"
+      - "5433:5432"
     environment:
-      POSTGRES_USER: exam
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: exam-db
   ### Postgres Adminer ###

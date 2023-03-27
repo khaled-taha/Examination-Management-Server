@@ -3,10 +3,10 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: postgres
-    url: jdbc:postgresql://localhost:27018/exam-db
+    url: jdbc:postgresql://localhost:5433/exam-db
     database: exam-db
     password: password
-    username: exam
+    username: postgres
 
   jpa:
     hibernate:

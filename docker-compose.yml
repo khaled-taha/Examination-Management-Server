@@ -5,7 +5,7 @@ services:
     image: exam-service
     build: ./
     ports:
-      - "8085:8082"
+      - "8085:8083"
     depends_on:
       - postgres
     environment:
@@ -18,7 +18,7 @@ services:
     image: postgres:10.4
     hostname: postgres
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password

@@ -12,17 +12,21 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/exam-db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      app_network:
   ### Postgres Database ###
   postgres:
     container_name: postgres
     image: postgres:10.4
     hostname: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: exam-db
+    networks:
+      app_network:
   ### Postgres Adminer ###
   postgres_admin:
     image: dpage/pgadmin4:4.28
@@ -33,3 +37,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: password
     ports:
       - "5050:80"
+    networks:
+      app_network:
+networks:
+  app_network:

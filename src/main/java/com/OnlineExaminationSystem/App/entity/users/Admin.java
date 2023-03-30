@@ -16,7 +16,6 @@ import java.util.Set;
 @Getter
 @EqualsAndHashCode
 @DiscriminatorValue("admin")
-@ToString
 public class Admin extends User implements Serializable {
 
     @Column(name = "specialization")

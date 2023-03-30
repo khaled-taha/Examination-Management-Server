@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="324c6ba2-3b72-42f0-85a3-9087408023f6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/AdminService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +21,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="digital-ocean" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -91,6 +97,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OnlineExaminationSystemApplication" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.OnlineExaminationSystemApplication" />
       </list>

@@ -4,6 +4,8 @@ import com.OnlineExaminationSystem.App.entity.users.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -18,6 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "userType")
 public abstract class User implements Serializable {

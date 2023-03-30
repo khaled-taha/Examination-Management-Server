@@ -1,6 +1,5 @@
 package com.OnlineExaminationSystem.App.entity.users;
 
-import com.OnlineExaminationSystem.App.entity.users.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

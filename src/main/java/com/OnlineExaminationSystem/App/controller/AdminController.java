@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.controller;
 
 
 import com.OnlineExaminationSystem.App.entity.users.Admin;
+import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.AdminService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -23,14 +24,14 @@ public class AdminController {
     @Operation(summary = "To get all admins from DB")
     @CrossOrigin(origins = "*", originPatterns = ".*")
     @GetMapping(path = "/getAll")
-    public ResponseEntity<List<Admin>> getStudents() {
+    public ResponseEntity<List<Admin>> getAdmins() {
         return new ResponseEntity<>(this.adminService.getAllAdmins(), HttpStatus.OK);
     }
 
     @Operation(summary = "To get an admin from DB by id")
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/get/{id}")
-    public ResponseEntity<Admin> getStudent(@PathVariable("id") Long id) {
+    public ResponseEntity<Admin> getAdmin(@PathVariable("id") Long id) {
         return new ResponseEntity<>(this.adminService.getAdminById(id), HttpStatus.OK);
     }
 
@@ -40,15 +41,24 @@ public class AdminController {
             "At the same time, you can set it manually.")
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
-    public ResponseEntity<Admin> addStudent(@RequestBody Admin admin) {
-        Admin adm =  this.adminService.saveAdmin(admin);
-        return new ResponseEntity<>(adm, HttpStatus.OK);
+    public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
+        Admin adm = null;
+        HttpStatus status;
+        try {
+              adm  =  this.adminService.saveAdmin(admin);
+              status = HttpStatus.OK;
+        }catch (ApiException e){
+            System.out.println(e.getMessage());
+            status = HttpStatus.BAD_REQUEST;
+        }
+        return new ResponseEntity<>(adm, status);
+
     }
 
     @Operation(summary = "To update an admin in DB.")
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/update")
-    public ResponseEntity<Admin> updateStudent(@RequestBody Admin admin) {
+    public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin) {
         Admin adm =  this.adminService.saveAdmin(admin);
         return new ResponseEntity<>(adm, HttpStatus.OK);
     }
@@ -56,7 +66,7 @@ public class AdminController {
     @Operation(summary = "To delete an admin from DB by id")
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/delete/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteAdmin(@PathVariable("id") Long id) {
         this.adminService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

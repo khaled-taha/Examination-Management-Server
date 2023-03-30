@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.controller;
 
 
 import com.OnlineExaminationSystem.App.entity.users.Admin;
+import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.AdminService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
@@ -41,8 +42,13 @@ public class AdminController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
     public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
-        Admin savedAdmin =  this.adminService.saveAdmin(admin);
-        return new ResponseEntity<>(savedAdmin, HttpStatus.OK);
+        try {
+            Admin savedAdmin =  this.adminService.saveAdmin(admin);
+            return new ResponseEntity<>(savedAdmin, HttpStatus.OK);
+        }catch (Exception e){
+            throw new ApiException(e.getMessage());
+        }
+
     }
 
     @Operation(summary = "To update an admin in DB.")

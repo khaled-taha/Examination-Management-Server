@@ -25,7 +25,7 @@ public class AdminService {
             }
             else if(this.adminRepository.findAdminByUniversityIdAndIdNot(admin.getUniversityId(), admin.getId()).isPresent())
                 throw new ApiException("Duplicate UniversityId");
-
+       System.out.println(admin);
         this.adminRepository.save(admin);
 
         return admin;

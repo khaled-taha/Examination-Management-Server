@@ -1,10 +1,7 @@
 package com.OnlineExaminationSystem.App.entity.users;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Group;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -19,6 +16,7 @@ import java.util.Set;
 @Getter
 @EqualsAndHashCode
 @DiscriminatorValue("admin")
+@ToString
 public class Admin extends User implements Serializable {
 
     @Column(name = "specialization")

@@ -23,4 +23,5 @@ public class Admin extends User implements Serializable {
     private String specialization;
 
 
+
 }

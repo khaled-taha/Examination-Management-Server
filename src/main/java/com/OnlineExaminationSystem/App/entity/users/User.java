@@ -40,7 +40,7 @@ public abstract class User implements Serializable {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name = "universityId")
+    @Column(name = "universityId", unique = true)
     @Positive
     @NotNull
     private Long universityId;

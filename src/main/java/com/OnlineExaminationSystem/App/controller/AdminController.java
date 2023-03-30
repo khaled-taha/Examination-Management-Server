@@ -41,16 +41,16 @@ public class AdminController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add")
     public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin) {
-        Admin adm =  this.adminService.saveAdmin(admin);
-        return new ResponseEntity<>(adm, HttpStatus.OK);
+        Admin savedAdmin =  this.adminService.saveAdmin(admin);
+        return new ResponseEntity<>(savedAdmin, HttpStatus.OK);
     }
 
     @Operation(summary = "To update an admin in DB.")
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/update")
     public ResponseEntity<Admin> updateAdmin(@RequestBody Admin admin) {
-        Admin adm =  this.adminService.saveAdmin(admin);
-        return new ResponseEntity<>(adm, HttpStatus.OK);
+        Admin savedAdmin =  this.adminService.saveAdmin(admin);
+        return new ResponseEntity<>(savedAdmin, HttpStatus.OK);
     }
 
     @Operation(summary = "To delete an admin from DB by id")

@@ -9,6 +9,7 @@ import com.OnlineExaminationSystem.App.entity.dto.studentAnswer.SelectedStudentA
 import com.OnlineExaminationSystem.App.service.ExamService;
 import com.OnlineExaminationSystem.App.service.ResultService;
 import com.OnlineExaminationSystem.App.service.StudentAnswerService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -156,6 +157,13 @@ public class ExamController {
     public ResponseEntity<List<Exam>> getAllExamsByCourseId(@PathVariable long courseId) {
         List<Exam> exams = examService.getAllExamsByCourseId(courseId);
         return ResponseEntity.ok(exams);
+    }
+
+    @Operation(summary = "To get All Attempts of the user by his id")
+    @GetMapping(path = "attempts")
+    public ResponseEntity<List<ExamAttemptDto>> getAllAttempts(@PathVariable("id") long id){
+        List<ExamAttemptDto> attempts = this.examService.getAllAttempts(id);
+        return new ResponseEntity<>(attempts, HttpStatus.OK);
     }
 
 

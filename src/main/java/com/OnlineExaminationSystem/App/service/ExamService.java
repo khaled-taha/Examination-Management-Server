@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -55,8 +56,6 @@ public class ExamService {
 
         return exams;
     }
-
-
     public Exam getExamById(long id){
         Exam exam =  this.examRepository.findExamById(id)
                 .orElseThrow(() -> new ApiException("Exam Not found"));
@@ -72,11 +71,9 @@ public class ExamService {
         this.questionRepository.deleteAllByExamId(exam.getId());
         this.examRepository.delete(exam);
     }
-
     public void deleteExam(long id){
         this.examRepository.deleteById(id);
     }
-
     public ExamAttemptDto attemptExam(long userId, long examId){
         Optional<Exam> exam =  this.examRepository.findExamById(examId);
         Optional<User> user = this.userRepository.findById(userId);
@@ -114,8 +111,6 @@ public class ExamService {
         });
         return this.examRepository.save(exam).getQuestions();
     }
-
-
     public List<Question> getExamQuestions(long examId) {
         return this.questionRepository.findAllByExamId(examId);
     }
@@ -167,5 +162,9 @@ public class ExamService {
         });
 
         return exams;
+    }
+    public List<ExamAttemptDto> getAllAttempts(Long studentId){
+        List<ExamAttempt> examAttempts =  this.attemptRepository.getAllExamAttemptByUserId(studentId);
+        return examAttempts.stream().map(ExamAttemptDto::mapToExamAttemptDto).collect(Collectors.toList());
     }
 }

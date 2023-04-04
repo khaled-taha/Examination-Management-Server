@@ -57,10 +57,7 @@ public class StudentService {
         return student;
     }
 
-    public List<ExamAttemptDto> getAllAttempts(Long studentId){
-        List<ExamAttempt> examAttempts =  this.attemptRepository.getAllExamAttemptByUserId(studentId);
-        return examAttempts.stream().map(ExamAttemptDto::mapToExamAttemptDto).collect(Collectors.toList());
-    }
+
 
 
 }

@@ -59,11 +59,4 @@ public class StudentController {
     }
 
 
-    @Operation(summary = "To get All Attempts of the student by his id")
-    @GetMapping(path = "attempts")
-    public ResponseEntity<List<ExamAttemptDto>> getAllAttempts(@PathVariable("id") long id){
-        List<ExamAttemptDto> attempts = this.studentService.getAllAttempts(id);
-        return new ResponseEntity<>(attempts, HttpStatus.OK);
-    }
-
 }

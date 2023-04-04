@@ -8,18 +8,21 @@ import java.util.List;
 
 @Data
 public class AdminDto {
+
+    private long id;
     private String firstName;
     private String lastName;
     private String specialization;
 
-    public AdminDto(String firstName, String lastName, String specialization) {
+    public AdminDto(long id, String firstName, String lastName, String specialization) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialization = specialization;
     }
 
     public static AdminDto getAdminDto(Admin admin){
-        return new AdminDto(admin.getFirstName(), admin.getLastName(), admin.getSpecialization());
+        return new AdminDto(admin.getId(), admin.getFirstName(), admin.getLastName(), admin.getSpecialization());
     }
 
     public static List<AdminDto> getAdmins(List<Admin> admins){

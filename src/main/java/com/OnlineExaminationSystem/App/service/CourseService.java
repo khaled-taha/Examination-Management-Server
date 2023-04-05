@@ -27,23 +27,21 @@ public class CourseService {
 
     public ResponseCourseDto saveCourse(RequestCourseDto course){
         List<Admin> admins = this.adminRepository.findAllById(course.getAdminIds());
-        Optional<Course> savedCourse = this.courseRepository.findById(course.getId());
+        Optional<Course> foundCourse = this.courseRepository.findById(course.getId());
 
-        if(!savedCourse.isPresent()) {
-            savedCourse = Optional.of(new Course());
+        if(!foundCourse.isPresent()) {
+            foundCourse = Optional.of(new Course());
         }
 
-        savedCourse.get().setId(course.getId());
-        savedCourse.get().setName(course.getName());
-        savedCourse.get().setCode(course.getCode());
-        savedCourse.get().setGroup(course.getGroup());
-        savedCourse.get().setAdmins(admins);
+        foundCourse.get().setId(course.getId());
+        foundCourse.get().setName(course.getName());
+        foundCourse.get().setCode(course.getCode());
+        foundCourse.get().setGroup(course.getGroup());
+        foundCourse.get().setAdmins(admins);
 
-        System.out.println(course.getCode());
+        Course savedCourse = this.courseRepository.save(foundCourse.get());
 
-        Course responseCourse = this.courseRepository.save(savedCourse.get());
-
-        return ResponseCourseDto.getCourseDto(responseCourse, admins);
+        return ResponseCourseDto.getCourseDto(savedCourse);
     }
 
     public void deleteCourse(long courseId){
@@ -57,25 +55,25 @@ public class CourseService {
 
         this.courseRepository.save(course);
 
-        return ResponseCourseDto.getCourseDto(course, admins);
+        return ResponseCourseDto.getCourseDto(course);
     }
 
     public List<ResponseCourseDto> getAll(){
         List<ResponseCourseDto> courseDtos = new ArrayList<>();
         List<Course> courses = this.courseRepository.findAll();
-        courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course, course.getAdmins()));}));
+        courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course));}));
         return courseDtos;
     }
     public List<ResponseCourseDto> getCoursesByGroupId(Long groupId) {
         List<ResponseCourseDto> courseDtos = new ArrayList<>();
         List<Course> courses = courseRepository.findAllByGroupId(groupId);
-        courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course, course.getAdmins()));}));
+        courses.stream().forEach((course -> {courseDtos.add(ResponseCourseDto.getCourseDto(course));}));
         return courseDtos;
     }
 
     public ResponseCourseDto getCoursesById(Long courseId) {
         Optional<Course> course = courseRepository.findById(courseId);
         if(!course.isPresent()) throw new ApiException("Course not found");
-        return ResponseCourseDto.getCourseDto(course.get(), course.get().getAdmins());
+        return ResponseCourseDto.getCourseDto(course.get());
     }
 }

@@ -26,9 +26,9 @@ public class ResponseCourseDto {
         this.admins = admins;
     }
 
-    public static ResponseCourseDto getCourseDto(Course course, List<Admin> admins){
+    public static ResponseCourseDto getCourseDto(Course course){
         return new ResponseCourseDto(course.getId(), course.getName(), course.getCode()
-                , course.getGroup().getName(), AdminDto.getAdmins(admins));
+                , course.getGroup().getName(), AdminDto.getAdmins(course.getAdmins()));
     }
 
 }

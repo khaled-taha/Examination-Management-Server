@@ -163,8 +163,8 @@ public class ExamService {
 
         return exams;
     }
-    public List<ExamAttemptDto> getAllAttempts(Long studentId){
-        List<ExamAttempt> examAttempts =  this.attemptRepository.getAllExamAttemptByUserId(studentId);
+    public List<ExamAttemptDto> getAllAttempts(Long userId){
+        List<ExamAttempt> examAttempts =  this.attemptRepository.getAllExamAttemptByUserId(userId);
         return examAttempts.stream().map(ExamAttemptDto::mapToExamAttemptDto).collect(Collectors.toList());
     }
 }

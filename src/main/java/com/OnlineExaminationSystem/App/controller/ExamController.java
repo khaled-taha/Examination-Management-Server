@@ -160,9 +160,9 @@ public class ExamController {
     }
 
     @Operation(summary = "To get All Attempts of the user by his id")
-    @GetMapping(path = "attempts")
-    public ResponseEntity<List<ExamAttemptDto>> getAllAttempts(@PathVariable("id") long id){
-        List<ExamAttemptDto> attempts = this.examService.getAllAttempts(id);
+    @GetMapping(path = "/attempts/{userId}")
+    public ResponseEntity<List<ExamAttemptDto>> getAllAttempts(@PathVariable("userId") long userId){
+        List<ExamAttemptDto> attempts = this.examService.getAllAttempts(userId);
         return new ResponseEntity<>(attempts, HttpStatus.OK);
     }
 

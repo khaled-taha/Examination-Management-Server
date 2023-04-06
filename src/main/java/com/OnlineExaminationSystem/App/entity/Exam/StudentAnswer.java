@@ -33,19 +33,14 @@ public class StudentAnswer {
     @JsonIgnore
     private ExamAttempt examAttempt;
 
-    @ManyToOne
-    @JoinColumn(name = "question_id")
-    private Question question;
-
     @Column(name = "score")
     private double points;
 
-    public StudentAnswer(Long id, List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, Question question, double points) {
+    public StudentAnswer(Long id, List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, double points) {
         this.id = id;
         this.questionAnswers = questionAnswers;
         this.examAttempt = examAttempt;
         this.points = points;
-        this.question = question;
     }
 
     // Getters and setters

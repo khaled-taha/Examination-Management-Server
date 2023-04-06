@@ -132,22 +132,22 @@ public class ExamService {
         Exam exam = this.getExamById(examId);
 
         List<Question> questions = exam.getQuestions();
-        List<QuestionDto> questionsDto = new ArrayList<>();
+        List<QuestionDto> questionsDtos = new ArrayList<>();
 
         questions.stream().forEach((question) -> {
 
             // set question answers
-            List<QuestionAnswerDto> questionAnswerDto = new ArrayList<>();
+            List<QuestionAnswerDto> questionAnswerDtos = new ArrayList<>();
 
             question.getQuestionAnswers().stream().forEach((answer) -> {
-                questionAnswerDto.add(QuestionAnswerDto.mapToQuestionAnswer(answer));
+                questionAnswerDtos.add(QuestionAnswerDto.mapToQuestionAnswerDto(answer));
             });
 
             // set questions
-            questionsDto.add(QuestionDto.mapToQuestion(question, questionAnswerDto));
+            questionsDtos.add(QuestionDto.mapToQuestionDto(question, questionAnswerDtos));
         });
 
-        return ExamDto.mapToExam(exam, questionsDto);
+        return ExamDto.mapToExamDto(exam, questionsDtos);
     }
     public List<Exam> getAllExamsByCourseId(Long courseId) {
 

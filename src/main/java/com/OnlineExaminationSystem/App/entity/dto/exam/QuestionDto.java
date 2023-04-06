@@ -15,7 +15,7 @@ public class QuestionDto {
     private int points;
     private String questionType;
     private List<QuestionAnswerDto> questionAnswers;
-    public static QuestionDto mapToQuestion(Question question, List<QuestionAnswerDto> questionAnswerDto){
+    public static QuestionDto mapToQuestionDto(Question question, List<QuestionAnswerDto> questionAnswerDto){
 
         return QuestionDto
                 .builder()

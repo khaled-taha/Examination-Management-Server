@@ -2,11 +2,9 @@ package com.OnlineExaminationSystem.App.entity.dto.exam;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Course;
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
-import com.OnlineExaminationSystem.App.entity.Exam.Group;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class ExamDto {
     private Course course;
     private List<QuestionDto> questions;
 
-    public static ExamDto mapToExam(Exam exam, List<QuestionDto> questionsDto){
+    public static ExamDto mapToExamDto(Exam exam, List<QuestionDto> questionsDto){
 
         return ExamDto
                 .builder()

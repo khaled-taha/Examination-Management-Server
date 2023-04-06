@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="324c6ba2-3b72-42f0-85a3-9087408023f6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/StudentAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/StudentAnswer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/ExamDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/ExamDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ResultService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/QuestionAnswerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/QuestionAnswerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/QuestionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/QuestionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ExamService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ExamService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/StudentAnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/StudentAnswerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

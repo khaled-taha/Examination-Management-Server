@@ -90,7 +90,6 @@ public class StudentAnswerService {
                             new StudentAnswer(
                                     studentAnswer != null ? studentAnswer.getId() : 0,
                                     selectedAnswers, attempt.get(),
-                                    correctedAnswers.get(0).getQuestion(),
                                     answerPoints.doubleValue()
                             ));
                 }
@@ -128,7 +127,6 @@ public class StudentAnswerService {
                     studentAnswer != null ? studentAnswer.getId() : 0,
                     Arrays.asList(correctedAnswers),
                     attempt,
-                    correctedAnswers.getQuestion(),
                     points
             ));
         });

@@ -13,7 +13,7 @@ public class QuestionAnswerDto {
     private Long id;
     private String answerText;
 
-    public static QuestionAnswerDto mapToQuestionAnswer(QuestionAnswer questionAnswer){
+    public static QuestionAnswerDto mapToQuestionAnswerDto(QuestionAnswer questionAnswer){
 
         return QuestionAnswerDto
                 .builder()

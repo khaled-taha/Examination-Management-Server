@@ -1,5 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.dto.exam;
 
+import com.OnlineExaminationSystem.App.entity.Exam.Course;
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.OnlineExaminationSystem.App.entity.Exam.Group;
 import lombok.Builder;
@@ -20,7 +21,7 @@ public class ExamDto {
     private LocalDateTime endTime;
     private int points;
     private double successRate;
-    private Group group;
+    private Course course;
     private List<QuestionDto> questions;
 
     public static ExamDto mapToExam(Exam exam, List<QuestionDto> questionsDto){
@@ -35,7 +36,7 @@ public class ExamDto {
                 .startTime(exam.getStartTime())
                 .endTime(exam.getEndTime())
                 .questions(questionsDto)
-                .group(exam.getCourse().getGroup())
+                .course(exam.getCourse())
                 .build();
     }
 

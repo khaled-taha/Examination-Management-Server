@@ -89,7 +89,6 @@ public class ResultService {
         return examResult.doubleValue();
     }
 
-
     public List<ExamResultDto> findAllUsersAttemptedExam(long examId){
         List<ExamResult> examResults = this.examResultRepository.findAllByExamId(examId);
         List<ExamResultDto> results = new ArrayList<>();

@@ -63,7 +63,7 @@ public class StudentAnswerService {
                     StudentAnswer studentAnswer = null;
                     if(correctedAnswers.size() > 0) {
                         studentAnswer = this.studentAnswerRepository.
-                                findByExamAttemptIdAndQuestionId(attemptId, correctedAnswers.get(0).getQuestion().getId());
+                                findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
                     }
 
 
@@ -112,7 +112,7 @@ public class StudentAnswerService {
             StudentAnswer studentAnswer = null;
             if(correctedAnswers != null) {
                 studentAnswer = this.studentAnswerRepository.
-                        findByExamAttemptIdAndQuestionId(attemptId, correctedAnswers.getQuestion().getId());
+                        findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
             }
 
             // get the total points

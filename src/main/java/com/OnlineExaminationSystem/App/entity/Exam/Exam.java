@@ -55,7 +55,6 @@ public class Exam {
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Course course;
     // getters and setters
 }

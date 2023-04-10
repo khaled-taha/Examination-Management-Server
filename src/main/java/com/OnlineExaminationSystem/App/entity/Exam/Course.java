@@ -4,9 +4,9 @@ package com.OnlineExaminationSystem.App.entity.Exam;
 import com.OnlineExaminationSystem.App.entity.users.Admin;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.List;
 
 

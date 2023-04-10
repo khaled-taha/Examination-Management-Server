@@ -1,18 +1,13 @@
 package com.OnlineExaminationSystem.App.controller;
-import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
-import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
+
 import com.OnlineExaminationSystem.App.entity.users.Student;
-import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController

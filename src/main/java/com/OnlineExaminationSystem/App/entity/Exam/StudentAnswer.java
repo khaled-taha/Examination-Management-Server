@@ -1,12 +1,11 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.bytebuddy.build.ToStringPlugin;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -14,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToStringPlugin.Enhance
 public class StudentAnswer {
 
     @Id

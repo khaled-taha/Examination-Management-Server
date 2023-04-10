@@ -1,13 +1,15 @@
 package com.OnlineExaminationSystem.App.entity.users;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Group;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "admin", schema = "public")

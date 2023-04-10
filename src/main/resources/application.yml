@@ -28,3 +28,8 @@ server:
 springdoc:
   swagger-ui:
     path: /api-doc
+
+
+java:
+  runtime:
+    version=17

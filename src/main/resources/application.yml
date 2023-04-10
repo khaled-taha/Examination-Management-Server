@@ -32,4 +32,4 @@ springdoc:
 
 java:
   runtime:
-    version: 17.0.6
+    version: 17

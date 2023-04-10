@@ -11,10 +11,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,24 +27,11 @@ public class StudentAnswerService {
     @Autowired
     private QuestionAnswerRepository questionAnswerRepository;
 
-    @Autowired
-    private ExamService examService;
-
-
-    /*
-     * Show Exam
-     * Create Exam Attempt.
-     * Create a student answer
-     * Exit Exam
-     * Get all answers of exam
-     * Create the result of the exam
-     * */
-
-
-
 
 
     // create a Student answer for a question:
+
+    /*
     @Async
     public void saveSelectedStudentAnswer(List<SelectedStudentAnswerDto> selectedAnswersDto, long attemptId){
         Optional<ExamAttempt> attempt = this.attemptRepository.findById(attemptId);
@@ -56,28 +40,30 @@ public class StudentAnswerService {
         selectedAnswersDto.stream().forEach((answer) -> {
 
                     // Answers
-                    List<QuestionAnswer> correctedAnswers =
+                    List<QuestionAnswer> answers =
                             this.questionAnswerRepository.findAllByQuestionId(answer.getQuestionId());
 
                     // Are there student answers for this question ?
                     StudentAnswer studentAnswer = null;
-                    if(correctedAnswers.size() > 0) {
+                    if(answers.size() > 0) {
                         studentAnswer = this.studentAnswerRepository.
                                 findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
                     }
 
 
+
                     // selected Answers
-                    List<QuestionAnswer> selectedAnswers = correctedAnswers.stream()
+                    List<QuestionAnswer> selectedAnswers = answers.stream()
                             .filter((questionAnswer) -> answer.getAnswersIds().contains(questionAnswer.getId()))
                             .collect(Collectors.toList());
 
 
                     // get the total points
-                    BigDecimal questionPoints = BigDecimal.valueOf(correctedAnswers.get(0).getQuestion().getPoints());
+                    BigDecimal questionPoints = BigDecimal.valueOf(answers.get(0).getQuestion().getPoints());
+
 
                     // count the corrected answer
-                    int correctAnswerCount = (int) correctedAnswers.stream().filter(QuestionAnswer::isCorrectAnswer).count();
+                    int correctAnswerCount = (int) answers.stream().filter(QuestionAnswer::isCorrectAnswer).count();
 
                     // count selected correct answer
                     int selectedAnswersCount = (int) selectedAnswers.stream().filter(QuestionAnswer::isCorrectAnswer).count();
@@ -90,7 +76,7 @@ public class StudentAnswerService {
                             new StudentAnswer(
                                     studentAnswer != null ? studentAnswer.getId() : 0,
                                     selectedAnswers, attempt.get(),
-                                    correctedAnswers.get(0).getQuestion(),
+                                    answers.get(0).getQuestion(),
                                     answerPoints.doubleValue()
                             ));
                 }
@@ -135,6 +121,76 @@ public class StudentAnswerService {
 
         this.studentAnswerRepository.saveAll(studentAnswers);
     }
+*/
+    @Async
+    public void saveSelectedStudentAnswer(List<SelectedStudentAnswerDto> selectedAnswersDto, long attemptId) {
+        ExamAttempt attempt = attemptRepository.findById(attemptId).get();
+
+        List<StudentAnswer> studentAnswers = selectedAnswersDto.stream().map(answer -> {
+
+            List<QuestionAnswer> answers = questionAnswerRepository
+                    .findAllByQuestionId(answer.getQuestionId());
+
+            if(answers == null || answers.size() == 0) return null;
+
+            List<QuestionAnswer> selectedAnswers = answers.stream()
+                    .filter(questionAnswer -> answer.getAnswersIds().contains(questionAnswer.getId()))
+                    .collect(Collectors.toList());
+
+            int correctAnswerCount = (int) answers.stream().filter(QuestionAnswer::isCorrectAnswer).count();
+            int selectedAnswersCount = (int) selectedAnswers.stream().filter(QuestionAnswer::isCorrectAnswer).count();
+
+            BigDecimal questionPoints = BigDecimal.valueOf(answers.get(0).getQuestion().getPoints());
+            BigDecimal answerPoints = questionPoints
+                    .divide(BigDecimal.valueOf(correctAnswerCount))
+                    .multiply(BigDecimal.valueOf(selectedAnswersCount));
+
+            StudentAnswer studentAnswer = studentAnswerRepository
+                    .findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
+
+            return new StudentAnswer(
+                    studentAnswer != null ? studentAnswer.getId() : 0,
+                    selectedAnswers,
+                    attempt,
+                    answers.get(0).getQuestion(),
+                    answerPoints.doubleValue()
+            );
+        }).filter(Objects::nonNull).collect(Collectors.toList());
+        studentAnswerRepository.saveAll(studentAnswers);
+    }
+
+    @Async
+    public void saveCompleteStudentAnswer(List<CompleteStudentAnswerDto> answers, long attemptId) {
+        ExamAttempt attempt = attemptRepository.findById(attemptId).get();
+
+        List<StudentAnswer> studentAnswers = answers.stream().map(answer -> {
+            QuestionAnswer correctedAnswer = questionAnswerRepository
+                    .findById(answer.getQuestionId()).orElse(null);
+
+            if (correctedAnswer == null) {
+                return null;
+            }
+
+            BigDecimal questionPoints = BigDecimal.valueOf(correctedAnswer.getQuestion().getPoints());
+
+            double answerPoints = answer.getTextAnswer().
+                    equalsIgnoreCase(correctedAnswer.getAnswerText()) ? questionPoints.doubleValue() : 0;
+
+            StudentAnswer studentAnswer = studentAnswerRepository
+                    .findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
+
+
+            return new StudentAnswer(
+                    studentAnswer != null ? studentAnswer.getId() : 0,
+                    Collections.singletonList(correctedAnswer),
+                    attempt,
+                    correctedAnswer.getQuestion(),
+                    answerPoints
+            );
+        }).filter(Objects::nonNull).collect(Collectors.toList());
+        studentAnswerRepository.saveAll(studentAnswers);
+    }
+
 
     // Get all student answers of the exam: Done
     public List<StudentAnswer> getAllAnswers(long attemptId){

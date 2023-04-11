@@ -48,6 +48,11 @@ public class Exam {
     @Column(name = "state")
     private boolean state = false;
 
+    @Column(name = "questionsPerPage")
+    private byte questionsPerPage = 1;
+
+    @Column(name = "showResult")
+    private boolean showResult = false;
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
     @JsonIgnore

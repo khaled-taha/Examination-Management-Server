@@ -1,12 +1,11 @@
-
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: postgres
-    url: jdbc:postgresql://localhost:27018/order-db
-    database: order-db
+    url: jdbc:postgresql://localhost:5433/exam-db
+    database: exam-db
     password: password
-    username: order
+    username: postgres
 
   jpa:
     hibernate:
@@ -29,10 +28,3 @@ server:
 springdoc:
   swagger-ui:
     path: /api-doc
-
-
-
-
-
-
-

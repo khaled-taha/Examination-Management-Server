@@ -102,13 +102,12 @@ public class ExamService {
     public List<Question> saveQuestions(List<Question> questions, Long examId) {
 
         Exam exam = this.examRepository.findExamById(examId).get();
-        exam.setQuestions(questions);
-
         questions.stream().forEach(question -> {
             question.setExam(exam);
             question.getQuestionAnswers().stream().
                     forEach(answer -> answer.setQuestion(question));
         });
+        exam.setQuestions(questions);
         return this.examRepository.save(exam).getQuestions();
     }
     public List<Question> getExamQuestions(long examId) {

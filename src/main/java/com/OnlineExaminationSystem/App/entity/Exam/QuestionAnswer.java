@@ -20,7 +20,7 @@ public class QuestionAnswer {
     @Id
     @SequenceGenerator(name = "question_answer_sequence", sequenceName = "question_answer_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "question_answer_sequence")
-    private long id;
+    private Long id;
 
     @Column(name = "answer_text", nullable = false)
     private String answerText;

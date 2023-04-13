@@ -3,6 +3,7 @@ package com.OnlineExaminationSystem.App.service;
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
 import com.OnlineExaminationSystem.App.entity.Exam.Question;
+import com.OnlineExaminationSystem.App.entity.Exam.QuestionAnswer;
 import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
 import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionAnswerDto;
@@ -37,7 +38,7 @@ public class ExamService {
     private UserRepository userRepository;
 
     @Autowired
-    private ExamResultRepository examResultRepository;
+    private QuestionAnswerRepository questionAnswerRepository;
 
 
     public Exam saveExam(Exam exam){
@@ -102,12 +103,13 @@ public class ExamService {
     public List<Question> saveQuestions(List<Question> questions, Long examId) {
 
         Exam exam = this.examRepository.findExamById(examId).get();
+        exam.setQuestions(questions);
+
         questions.stream().forEach(question -> {
             question.setExam(exam);
             question.getQuestionAnswers().stream().
                     forEach(answer -> answer.setQuestion(question));
         });
-        exam.setQuestions(questions);
         return this.examRepository.save(exam).getQuestions();
     }
     public List<Question> getExamQuestions(long examId) {
@@ -116,6 +118,11 @@ public class ExamService {
     public void deleteQuestion(Question question){
         this.questionRepository.delete(question);
     }
+
+    public void deleteQuestionAnswer(List<QuestionAnswer> questionAnswers){
+        this.questionAnswerRepository.deleteAll(questionAnswers);
+    }
+
     public int getExamPoints(long examId){
         //get the exam
         Optional<Exam> exam = this.examRepository.findExamById(examId);

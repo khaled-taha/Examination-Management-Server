@@ -88,6 +88,12 @@ public class ExamController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @DeleteMapping(path = "/deleteQuestionAnswer")
+    public ResponseEntity<?> deleteQuestionAnswer(@RequestBody List<QuestionAnswer> questionAnswers){
+        this.examService.deleteQuestionAnswer(questionAnswers);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     // Attempt the exam
     @PostMapping(path = "/attemptExam/{examId}/{userId}")
     public ResponseEntity<ExamAttemptDto> attemptExam(@PathVariable("examId") long examId,

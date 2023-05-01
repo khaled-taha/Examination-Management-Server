@@ -81,9 +81,9 @@ public class ExamService {
 
 
         if(user.isPresent() && exam.isPresent()
-                && (LocalDateTime.now().equals(exam.get().getStartTime()) ||
-                (LocalDateTime.now().isAfter(exam.get().getStartTime())))
-                && (LocalDateTime.now().isBefore(exam.get().getEndTime()))) {
+                && ((LocalDateTime.now().equals(exam.get().getStartTime())) ||
+                (LocalDateTime.now().isAfter(exam.get().getStartTime()))
+                && (LocalDateTime.now().isBefore(exam.get().getEndTime())))) {
 
             ExamAttempt examAttempt = new ExamAttempt();
             examAttempt.setUser(user.get());

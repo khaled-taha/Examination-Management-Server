@@ -2,6 +2,7 @@ package com.OnlineExaminationSystem.App.entity.dto.exam;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Course;
 import com.OnlineExaminationSystem.App.entity.Exam.Exam;
+import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Data;
 
@@ -21,6 +22,8 @@ public class ExamDto {
     private double successRate;
     private Course course;
     private List<QuestionDto> questions;
+    private byte questionsPerPage = 1;
+    private boolean showResult = false;
 
     public static ExamDto mapToExamDto(Exam exam, List<QuestionDto> questionsDto){
 
@@ -35,6 +38,8 @@ public class ExamDto {
                 .endTime(exam.getEndTime())
                 .questions(questionsDto)
                 .course(exam.getCourse())
+                .questionsPerPage(exam.getQuestionsPerPage())
+                .showResult(exam.isShowResult())
                 .build();
     }
 

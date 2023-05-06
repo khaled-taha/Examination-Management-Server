@@ -48,8 +48,8 @@ public class ExamService {
         List<Exam> exams = this.examRepository.findAll();
         exams.stream().forEach((exam) -> {
 
-            if((LocalDateTime.now().equals(exam.getStartTime()) || (LocalDateTime.now().isAfter(exam.getStartTime())))
-                    && (LocalDateTime.now().isBefore(exam.getEndTime())))
+            if((LocalDateTime.now().equals(exam.getStartTime())) || (LocalDateTime.now().isAfter(exam.getStartTime())
+                    && (LocalDateTime.now().isBefore(exam.getEndTime()))))
                 exam.setState(true);
             else
                 exam.setState(false);
@@ -61,8 +61,8 @@ public class ExamService {
         Exam exam =  this.examRepository.findExamById(id)
                 .orElseThrow(() -> new ApiException("Exam Not found"));
 
-        if((LocalDateTime.now().equals(exam.getStartTime()) || (LocalDateTime.now().isAfter(exam.getStartTime())))
-                && (LocalDateTime.now().isBefore(exam.getEndTime())))
+        if((LocalDateTime.now().equals(exam.getStartTime())) || (LocalDateTime.now().isAfter(exam.getStartTime())
+                && (LocalDateTime.now().isBefore(exam.getEndTime()))))
             exam.setState(true);
         else
             exam.setState(false);
@@ -160,8 +160,8 @@ public class ExamService {
         List<Exam> exams = examRepository.findAllExamsByCourseId(courseId);
         exams.stream().forEach((exam) -> {
 
-            if((LocalDateTime.now().equals(exam.getStartTime()) || (LocalDateTime.now().isAfter(exam.getStartTime())))
-                    && (LocalDateTime.now().isBefore(exam.getEndTime())))
+            if((LocalDateTime.now().equals(exam.getStartTime())) || (LocalDateTime.now().isAfter(exam.getStartTime())
+                    && (LocalDateTime.now().isBefore(exam.getEndTime()))))
                 exam.setState(true);
             else
                 exam.setState(false);

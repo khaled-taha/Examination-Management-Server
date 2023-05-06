@@ -54,7 +54,10 @@ public class ExamService {
             else
                 exam.setState(false);
         });
-        System.out.println(exams);
+
+        exams.stream().forEach((exam) -> {
+            System.out.println(exam.isState());
+        });
 
         this.examRepository.saveAll(exams);
 

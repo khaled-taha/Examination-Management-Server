@@ -54,6 +54,7 @@ public class ExamService {
             else
                 exam.setState(false);
         });
+        System.out.println(exams);
 
         this.examRepository.saveAll(exams);
 

@@ -56,7 +56,7 @@ public class ExamService {
 
 
             if(LocalDateTime.now().compareTo(exam.getStartTime()) >= 0
-                    && LocalDateTime.now().compareTo(exam.getStartTime()) < 0) {
+                    && LocalDateTime.now().compareTo(exam.getEndTime()) < 0) {
                 exam.setState(true);
             }
             else

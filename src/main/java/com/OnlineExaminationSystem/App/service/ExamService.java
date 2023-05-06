@@ -55,6 +55,8 @@ public class ExamService {
                 exam.setState(false);
         });
 
+        this.examRepository.saveAll(exams);
+
         return exams;
     }
     public Exam getExamById(long id){
@@ -66,6 +68,7 @@ public class ExamService {
             exam.setState(true);
         else
             exam.setState(false);
+        this.examRepository.save(exam);
         return exam;
     }
     public void deleteExam(Exam exam){
@@ -166,6 +169,7 @@ public class ExamService {
             else
                 exam.setState(false);
         });
+        this.examRepository.saveAll(exams);
 
         return exams;
     }

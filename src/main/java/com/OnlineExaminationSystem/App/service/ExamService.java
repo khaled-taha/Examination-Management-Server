@@ -46,7 +46,7 @@ public class ExamService {
     }
     public List<Exam> getAllExams() {
         List<Exam> exams = this.examRepository.findAll();
-        exams.stream().forEach((exam) -> {
+        exams.forEach((exam) -> {
 
             if((LocalDateTime.now().equals(exam.getStartTime())) || (LocalDateTime.now().isAfter(exam.getStartTime())
                     && (LocalDateTime.now().isBefore(exam.getEndTime())))) {

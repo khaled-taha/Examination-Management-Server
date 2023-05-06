@@ -49,8 +49,10 @@ public class ExamService {
         exams.stream().forEach((exam) -> {
 
             if((LocalDateTime.now().equals(exam.getStartTime())) || (LocalDateTime.now().isAfter(exam.getStartTime())
-                    && (LocalDateTime.now().isBefore(exam.getEndTime()))))
+                    && (LocalDateTime.now().isBefore(exam.getEndTime())))) {
                 exam.setState(true);
+                System.out.println("S: " + true);
+            }
             else
                 exam.setState(false);
         });

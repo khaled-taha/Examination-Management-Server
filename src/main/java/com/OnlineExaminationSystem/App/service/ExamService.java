@@ -49,14 +49,14 @@ public class ExamService {
         List<Exam> exams = this.examRepository.findAll();
         exams.forEach((exam) -> {
             System.out.println(exam.getExamName());
-            System.out.println((LocalDateTime.now().equals(exam.getStartTime())));
-            System.out.println((LocalDateTime.now().isAfter(exam.getStartTime())));
-            System.out.println((LocalDateTime.now().isBefore(exam.getEndTime())));
+            System.out.println((LocalDateTime.now().equals(getTime(exam.getStartTime()))));
+            System.out.println((LocalDateTime.now().isAfter(getTime(exam.getStartTime()))));
+            System.out.println((LocalDateTime.now().isBefore(getTime(exam.getEndTime()))));
             System.out.println("===================================================");
 
 
-            if(LocalDateTime.now().compareTo(exam.getStartTime()) >= 0
-                    && LocalDateTime.now().compareTo(exam.getEndTime()) < 0) {
+            if(LocalDateTime.now().compareTo(getTime(exam.getStartTime())) >= 0
+                    && LocalDateTime.now().compareTo(getTime(exam.getEndTime())) < 0) {
                 exam.setState(true);
             }
             else
@@ -70,6 +70,11 @@ public class ExamService {
         this.examRepository.saveAll(exams);
 
         return exams;
+    }
+
+    private LocalDateTime getTime(LocalDateTime time){
+        return LocalDateTime.of(time.getYear(), time.getMonthValue(), time.getDayOfMonth(),
+                time.getHour(), time.getMinute());
     }
     public Exam getExamById(long id){
         Exam exam =  this.examRepository.findExamById(id)

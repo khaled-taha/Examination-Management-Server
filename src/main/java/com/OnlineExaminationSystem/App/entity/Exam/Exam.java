@@ -48,13 +48,13 @@ public class Exam {
     private double successRate;
 
     @Column(name = "state")
-    private boolean state = false;
+    private boolean state;
 
     @Column(name = "questionsPerPage")
     private byte questionsPerPage = 1;
 
     @Column(name = "showResult")
-    private boolean showResult = false;
+    private boolean showResult;
 
     @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
     @JsonIgnore

@@ -48,11 +48,6 @@ public class ExamService {
     public List<Exam> getAllExams() {
         List<Exam> exams = this.examRepository.findAll();
         exams.forEach((exam) -> {
-            System.out.println(exam.getExamName());
-            System.out.println((LocalDateTime.now().equals(getTime(exam.getStartTime()))));
-            System.out.println((LocalDateTime.now().isAfter(getTime(exam.getStartTime()))));
-            System.out.println((LocalDateTime.now().isBefore(getTime(exam.getEndTime()))));
-            System.out.println("===================================================");
 
 
             if(LocalDateTime.now().compareTo(getTime(exam.getStartTime())) >= 0
@@ -61,10 +56,6 @@ public class ExamService {
             }
             else
                 exam.setState(false);
-        });
-
-        exams.stream().forEach((exam) -> {
-            System.out.println(exam.isState());
         });
 
         this.examRepository.saveAll(exams);

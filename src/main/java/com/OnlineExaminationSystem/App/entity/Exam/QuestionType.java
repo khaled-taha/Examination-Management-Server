@@ -5,5 +5,6 @@ public enum QuestionType {
     Multiple_choice,
     Multiple_Answers,
     Matching,
-    True_False
+    True_False,
+    CODING;
 }

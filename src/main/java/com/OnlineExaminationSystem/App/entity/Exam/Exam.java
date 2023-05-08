@@ -37,11 +37,11 @@ public class Exam {
     private Integer duration;
 
     @Column(name = "startTime")
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime startTime;
 
     @Column(name = "endTime")
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime endTime;
 
     @Column(name = "successRate")

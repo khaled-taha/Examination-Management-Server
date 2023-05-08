@@ -1,7 +1,5 @@
 package com.OnlineExaminationSystem.App.service;
 
-import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
-import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
 import com.OnlineExaminationSystem.App.entity.users.Student;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.ExamAttemptRepository;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor

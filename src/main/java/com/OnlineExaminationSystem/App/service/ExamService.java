@@ -1,13 +1,7 @@
 package com.OnlineExaminationSystem.App.service;
 
-import com.OnlineExaminationSystem.App.entity.Exam.Exam;
-import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
-import com.OnlineExaminationSystem.App.entity.Exam.Question;
-import com.OnlineExaminationSystem.App.entity.Exam.QuestionAnswer;
-import com.OnlineExaminationSystem.App.entity.dto.exam.ExamAttemptDto;
-import com.OnlineExaminationSystem.App.entity.dto.exam.ExamDto;
-import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionAnswerDto;
-import com.OnlineExaminationSystem.App.entity.dto.exam.QuestionDto;
+import com.OnlineExaminationSystem.App.entity.Exam.*;
+import com.OnlineExaminationSystem.App.entity.dto.exam.*;
 import com.OnlineExaminationSystem.App.entity.users.User;
 import com.OnlineExaminationSystem.App.exceptions.ApiException;
 import com.OnlineExaminationSystem.App.repository.*;
@@ -40,16 +34,12 @@ public class ExamService {
     @Autowired
     private QuestionAnswerRepository questionAnswerRepository;
 
-
-
     public Exam saveExam(Exam exam){
         return this.examRepository.save(exam);
     }
     public List<Exam> getAllExams() {
         List<Exam> exams = this.examRepository.findAll();
         exams.forEach((exam) -> {
-
-
             if(LocalDateTime.now().compareTo(getTime(exam.getStartTime())) >= 0
                     && LocalDateTime.now().compareTo(getTime(exam.getEndTime())) < 0) {
                 exam.setState(true);
@@ -116,12 +106,16 @@ public class ExamService {
         exam.setQuestions(questions);
 
         questions.stream().forEach(question -> {
-            question.setExam(exam);
-            question.getQuestionAnswers().stream().
-                    forEach(answer -> answer.setQuestion(question));
+            if(!question.getQuestionType().name().equalsIgnoreCase(QuestionType.CODING.name())) {
+                question.setExam(exam);
+                question.getQuestionAnswers().stream().
+                        forEach(answer -> answer.setQuestion(question));
+            }
         });
         return this.examRepository.save(exam).getQuestions();
     }
+
+
     public List<Question> getExamQuestions(long examId) {
         return this.questionRepository.findAllByExamId(examId);
     }

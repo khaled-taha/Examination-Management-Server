@@ -167,6 +167,8 @@ public class StudentAnswerService {
             QuestionAnswer correctedAnswer = questionAnswerRepository
                     .findById(answer.getQuestionId()).orElse(null);
 
+            System.out.println("correctedAnswer: " + correctedAnswer);
+
             if (correctedAnswer == null) {
                 return null;
             }
@@ -179,6 +181,7 @@ public class StudentAnswerService {
             StudentAnswer studentAnswer = studentAnswerRepository
                     .findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
 
+            System.out.println("studentAnswer: " + studentAnswer);
 
             return new StudentAnswer(
                     studentAnswer != null ? studentAnswer.getId() : 0,

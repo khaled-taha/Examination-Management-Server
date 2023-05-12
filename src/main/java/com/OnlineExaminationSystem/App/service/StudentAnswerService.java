@@ -164,12 +164,10 @@ public class StudentAnswerService {
         ExamAttempt attempt = attemptRepository.findById(attemptId).get();
 
         List<StudentAnswer> studentAnswers = answers.stream().map(answer -> {
-            System.out.println("ID: " + answer.getQuestionId());
 
             QuestionAnswer correctedAnswer = questionAnswerRepository
-                    .findById(answer.getQuestionId()).orElse(null);
+                    .findByQuestionId(answer.getQuestionId());
 
-            System.out.println("correctedAnswer: " + correctedAnswer);
 
             if (correctedAnswer == null) {
                 return null;

@@ -122,7 +122,6 @@ public class StudentAnswerService {
         this.studentAnswerRepository.saveAll(studentAnswers);
     }
 */
-    @Async
     public void saveSelectedStudentAnswer(List<SelectedStudentAnswerDto> selectedAnswersDto, long attemptId) {
         ExamAttempt attempt = attemptRepository.findById(attemptId).get();
 
@@ -159,7 +158,7 @@ public class StudentAnswerService {
         studentAnswerRepository.saveAll(studentAnswers);
     }
 
-    @Async
+
     public void saveCompleteStudentAnswer(List<CompleteStudentAnswerDto> answers, long attemptId) {
         ExamAttempt attempt = attemptRepository.findById(attemptId).get();
 

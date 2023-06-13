@@ -43,5 +43,5 @@ public class ExamAttempt {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm a")
     private LocalDateTime endTime;
 
-    // getters and setters
+
 }

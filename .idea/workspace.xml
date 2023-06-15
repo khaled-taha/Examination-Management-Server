@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3fa02c31-da91-4a2d-9ea8-376e2da2f8ac" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Examinarion System/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JSON.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/Security/config/CorsConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/CourseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/ExamController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/GroupController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/RoleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/controller/StudentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/CodeJudgement/Problem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/CodeJudgement/Submission.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/CodeJudgement/TestCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Course.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Exam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/ExamAttempt.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/ExamResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Group.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/Question.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/QuestionAnswer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/QuestionType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/Exam/StudentAnswer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/RequestCourseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/ResponseCourseDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/ExamAttemptDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/ExamDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/QuestionAnswerDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/exam/QuestionDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/studentAnswer/CompleteStudentAnswerDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/studentAnswer/ExamResultDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/studentAnswer/SelectedStudentAnswerDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/dto/userDto/AdminDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/Student.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/users/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/validation/SemestNum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/validation/SemestNumValidation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/validation/Year.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/entity/validation/YearValidation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/exceptions/ApiException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/exceptions/ApiExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/exceptions/ApiExceptionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/AdminRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/CourseRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/ExamAttemptRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/ExamRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/ExamResultRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/GroupRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/QuestionAnswerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/QuestionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/StudentAnswerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/StudentRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/AdminService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/CourseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ExamService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/GroupService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/ResultService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/RoleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/StudentAnswerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/OnlineExaminationSystem/App/service/StudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/OnlineExaminationSystem/App/MainTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/system.properties" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="security" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2OQ60IQ7VXQFb9Ixxn5SKUVZSPW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "19",
+    "last_opened_file_path": "E:/Graduation Project/sprints/Examination-Management-Server/Examinarion System/Gateway/src/main/resources",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Graduation Project\sprints\Examination-Management-Server\Examinarion System\Gateway\src\main\resources" />
+      <recent name="E:\Graduation Project\sprints\Examination-Management-Server\Examinarion System\code-Judgment\src\main\resources" />
+      <recent name="E:\Graduation Project\sprints\Examination-Management-Server\Examinarion System\code-Judgment" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.GatewayApplication">
+    <configuration name="CodeJudgmentApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.exam.code.Judgment.CodeJudgmentApplication" />
+      <module name="code-Judgment" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.exam.code.Judgment.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.examination.Management.System.Gateway.GatewayApplication" />
+      <module name="Gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.examination.Management.System.Gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.OnlineExaminationSystem.App.Main" />
+      <module name="Exam" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.OnlineExaminationSystem.App.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Exam-Service.postgres-exam: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="postgres-exam" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Examinarion System/Exam-Service/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="code-Judgment.postgres-code: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="postgres-code" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="Examinarion System/code-Judgment/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GatewayApplication" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.CodeJudgmentApplication" />
+        <item itemvalue="Docker.code-Judgment.postgres-code: Compose Deployment" />
+        <item itemvalue="Docker.Exam-Service.postgres-exam: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3fa02c31-da91-4a2d-9ea8-376e2da2f8ac" name="Changes" comment="" />
+      <created>1681480274163</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681480274163</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

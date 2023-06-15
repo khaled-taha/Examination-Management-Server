@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /api/code
+  port: 8081

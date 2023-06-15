@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="code-Judgment" />
+        <module name="Exam" />
+        <module name="Gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="code Judgment" target="19" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Exam" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
+      <module name="code Judgment" options="" />
+      <module name="code-Judgment" options="-parameters" />
+    </option>
+  </component>
+</project>

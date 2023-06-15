@@ -1,0 +1,133 @@
+
+// roles/add
+
+{
+  "role": "STUDENT"
+}
+
+// =======================================
+
+// students/add
+
+{
+  "firstName": "Ahmed",
+  "lastName": "Reda",
+  "universityId":18,
+  "email": "Ahme@wi.comm",
+  "password": "zzzzzzzz1  ",
+  "roles": [
+      {
+          "id": 1,
+          "role": "STUDENT"
+      }
+  ],
+  "year":4,
+  "locked": false,
+  "enable": true
+}
+
+
+// exam/save
+
+{
+    "examName": "java",
+    "examDate": "2023-02-12T05:18:19.677Z",
+    "duration": 30,
+    "startTime": "2023-02-12T05:18:19.677Z",
+    "endTime": "2023-02-12T05:18:19.677Z"
+  }
+//===============================================
+
+// api/exam/saveQuestions
+
+[
+    {
+    "id": 0,
+  "questionText": "What is Java ?",
+  "points": 5,
+  "questionType": "Complete",
+  "exam": {
+        "id": 1,
+        "examName": "java",
+        "examDate": "2023-02-12T05:18:19.000+00:00",
+        "duration": 30,
+        "startTime": "2023-02-12T05:18:19",
+        "endTime": "2023-02-12T05:18:19"
+    },
+  "questionAnswers": [
+    {
+                "id": 0,
+      "answerText": "MUL",
+      "correctAnswer": true
+    },
+
+    {
+                "id": 0,
+      "answerText": "Scripting Langauge",
+      "correctAnswer": false
+    }
+  ]
+},
+    {
+    "id": 0,
+  "questionText": "What is python ?",
+  "points": 5,
+  "questionType": "Complete",
+  "exam": {
+        "id": 1,
+        "examName": "java",
+        "examDate": "2023-02-12T05:18:19.000+00:00",
+        "duration": 30,
+        "startTime": "2023-02-12T05:18:19",
+        "endTime": "2023-02-12T05:18:19"
+    },
+  "questionAnswers": [
+    {
+        "id": 0,
+      "answerText": "programming Langauge",
+      "correctAnswer": true
+    },
+
+    {
+        "id": 0,
+      "answerText": "Scripting Langauge",
+      "correctAnswer": false
+    }
+  ]
+}
+]
+
+// ==============================================
+
+// exam/attemptExam
+
+{
+  "id": 0,
+  "exam": {
+    "id": 0,
+    "examName": "string",
+    "examDate": "2023-02-19T15:57:38.707Z",
+    "duration": 0,
+    "startTime": "2023-02-19T15:57:38.707Z",
+    "endTime": "2023-02-19T15:57:38.707Z"
+  },
+  "user": {
+    "id": 0,
+    "firstName": "string",
+    "lastName": "string",
+    "universityId": 0,
+    "email": "string",
+    "password": "string",
+    "roles": [
+      {
+        "id": 0,
+        "role": "string"
+      }
+    ],
+    "locked": true,
+    "enable": true
+  },
+  "startTime": "2023-02-19T15:57:38.707Z",
+  "endTime": "2023-02-19T15:57:38.707Z"
+}
+

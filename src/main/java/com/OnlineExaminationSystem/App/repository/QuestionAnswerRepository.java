@@ -8,5 +8,6 @@ import java.util.List;
 public interface QuestionAnswerRepository extends JpaRepository<QuestionAnswer, Long> {
 
     List<QuestionAnswer> findAllByQuestionId(long questionId);
+    QuestionAnswer findByQuestionId(long questionId);
 
 }

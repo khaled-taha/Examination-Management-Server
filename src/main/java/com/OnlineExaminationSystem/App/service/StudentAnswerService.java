@@ -122,7 +122,6 @@ public class StudentAnswerService {
         this.studentAnswerRepository.saveAll(studentAnswers);
     }
 */
-    @Async
     public void saveSelectedStudentAnswer(List<SelectedStudentAnswerDto> selectedAnswersDto, long attemptId) {
         ExamAttempt attempt = attemptRepository.findById(attemptId).get();
 
@@ -159,13 +158,15 @@ public class StudentAnswerService {
         studentAnswerRepository.saveAll(studentAnswers);
     }
 
-    @Async
+
     public void saveCompleteStudentAnswer(List<CompleteStudentAnswerDto> answers, long attemptId) {
         ExamAttempt attempt = attemptRepository.findById(attemptId).get();
 
         List<StudentAnswer> studentAnswers = answers.stream().map(answer -> {
+
             QuestionAnswer correctedAnswer = questionAnswerRepository
-                    .findById(answer.getQuestionId()).orElse(null);
+                    .findByQuestionId(answer.getQuestionId());
+
 
             if (correctedAnswer == null) {
                 return null;
@@ -179,6 +180,7 @@ public class StudentAnswerService {
             StudentAnswer studentAnswer = studentAnswerRepository
                     .findByExamAttemptIdAndQuestionId(attemptId, answer.getQuestionId());
 
+            System.out.println("studentAnswer: " + studentAnswer);
 
             return new StudentAnswer(
                     studentAnswer != null ? studentAnswer.getId() : 0,

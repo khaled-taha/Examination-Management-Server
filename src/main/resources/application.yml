@@ -17,6 +17,8 @@ spring:
       jdbc:
         lob:
           non_contextual_creation: true
+  jackson:
+    time-zone: Africa/Cairo
 
 server:
   servlet:

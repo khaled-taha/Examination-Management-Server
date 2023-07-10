@@ -82,8 +82,8 @@ public class ResultService {
         double score = answers.stream().mapToDouble(StudentAnswer::getPoints).sum();
 
         // get final score
-        BigDecimal examResult = BigDecimal.valueOf(score).
-                divide(BigDecimal.valueOf(examPoints), 3, RoundingMode.HALF_UP)
+        BigDecimal examResult = (BigDecimal.valueOf(score).
+                divide(BigDecimal.valueOf(examPoints), 3, RoundingMode.HALF_UP))
                 .multiply(BigDecimal.valueOf(100));
 
         return examResult.doubleValue();

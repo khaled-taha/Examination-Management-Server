@@ -1,0 +1,6 @@
+saveQuestions/{examId} - > saveStandardQuestions/{examId}
+getQuestions/{id} -> getStandardQuestions/{id}
+deleteQuestion -> deleteStandardQuestion
+the response of render exam
+The response of getAllStudentAnswers/{examAttemptId}
+deleteQuestionAnswer -> deleteStandardQuestionAnswer

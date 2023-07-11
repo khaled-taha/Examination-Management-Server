@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 @Entity
@@ -13,15 +15,14 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ExamResult {
-
-
     @Id
     @SequenceGenerator(name = "examResult_sequence", sequenceName = "examResult_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "examResult_sequence")
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "exam_attempt_id", unique = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private ExamAttempt examAttempt;
 
@@ -33,4 +34,3 @@ public class ExamResult {
 
     // getters and setters
 }
-

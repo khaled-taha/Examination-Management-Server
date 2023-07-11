@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -32,8 +34,9 @@ public class Course {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Group group;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course")
     @JsonIgnore
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Exam> exams;
 
     @ManyToMany

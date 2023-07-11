@@ -1,0 +1,20 @@
+(Manage Admins, Manage Students, Manage Exams, Test Exams, Manage Roles, Manage Courses, Get Groups)
+
+
+USER:
+SHOW PROFILE (FOR ONE USER)
+=============================================================
+ADMIN:
+Manage Admins: ADD, UPDATE, DELETE, SHOW ALL ADMINS
+SHOW ALL ADMINS
+=============================================================
+STUDENT:
+MANAGE STUDENT: ADD, UPDATE, DELETE, SHOW ALL STUDENTS
+SHOW ALL STUDENTS
+=============================================================
+MANAGE ROLE: ADD, UPDATE, DELETE, SHOW ALL ROLES, SHOW ROLE, SHOW PRIVILEGES
+=============================================================
+MANAGE COURSES : SHOW ALL, SHOW_COURSE_DETAILS_ROLE, SAVE, DELETE, SHOW ALL GROUPS
+SHOW COURSES OF ADMIN ===> ++ SHOW_COURSE_DETAILS_ROLE, SHOW EXAMS OF COURSE
+SHOW_COURSE_OF_GROUP_ROLE ==> ++ SHOW_COURSE_DETAILS_ROLE, SHOW EXAMS OF COURSE (STUDENT)
+=============================================================

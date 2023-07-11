@@ -9,8 +9,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +27,7 @@ import java.util.Set;
 @ToString
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "userType")
-public abstract class User implements Serializable {
+public abstract class User implements UserDetails, Serializable {
 
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
@@ -54,7 +59,7 @@ public abstract class User implements Serializable {
     @Size(min = 6)
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @NotNull
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -66,5 +71,43 @@ public abstract class User implements Serializable {
 
     @Column(name = "enable")
     private boolean enable = true;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+
+        roles.stream()
+                .flatMap(role -> role.getPrivileges().stream())
+                .map(privilege -> new SimpleGrantedAuthority(privilege.getName()))
+                .forEach(authorities::add);
+
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.enable;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.enable;
+    }
 
 }

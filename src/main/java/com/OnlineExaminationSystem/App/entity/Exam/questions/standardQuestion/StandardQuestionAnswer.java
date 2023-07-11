@@ -1,6 +1,7 @@
-package com.OnlineExaminationSystem.App.entity.Exam;
+package com.OnlineExaminationSystem.App.entity.Exam.questions.standardQuestion;
 
 
+import com.OnlineExaminationSystem.App.entity.Exam.questions.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class QuestionAnswer {
+public class StandardQuestionAnswer {
 
     @Id
     @SequenceGenerator(name = "question_answer_sequence", sequenceName = "question_answer_sequence", allocationSize = 1)
@@ -35,6 +36,5 @@ public class QuestionAnswer {
     @JoinColumn(name = "question_id", nullable = false)
     @JsonIgnore
     private Question question;
-
 
 }

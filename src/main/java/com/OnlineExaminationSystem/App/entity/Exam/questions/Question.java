@@ -1,13 +1,12 @@
-package com.OnlineExaminationSystem.App.entity.Exam;
+package com.OnlineExaminationSystem.App.entity.Exam.questions;
 
+import com.OnlineExaminationSystem.App.entity.Exam.Exam;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "Question", schema = "public")
@@ -16,6 +15,8 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "type")
 public class Question {
 
     @Id
@@ -39,8 +40,6 @@ public class Question {
     @JsonIgnore
     private Exam exam;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<QuestionAnswer> questionAnswers = new ArrayList<>();
 
     // Getters and setters
 }

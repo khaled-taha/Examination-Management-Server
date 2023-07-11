@@ -1,4 +1,4 @@
-package com.OnlineExaminationSystem.App.entity.Exam;
+package com.OnlineExaminationSystem.App.entity.Exam.questions;
 
 
 public enum QuestionType {

@@ -1,6 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.dto.exam;
 
-import com.OnlineExaminationSystem.App.entity.Exam.Question;
+import com.OnlineExaminationSystem.App.entity.Exam.questions.Question;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,16 +8,17 @@ import java.util.List;
 
 @Builder
 @Data
-public class QuestionDto {
+public class StandardQuestionDto {
 
     private Long id;
     private String questionText;
     private int points;
     private String questionType;
     private List<QuestionAnswerDto> questionAnswers;
-    public static QuestionDto mapToQuestionDto(Question question, List<QuestionAnswerDto> questionAnswerDto){
+    public static StandardQuestionDto mapToQuestionDto(Question question,
+                                                       List<QuestionAnswerDto> questionAnswerDto){
 
-        return QuestionDto
+        return StandardQuestionDto
                 .builder()
                 .id(question.getId())
                 .questionType(question.getQuestionType().name())

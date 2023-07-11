@@ -10,9 +10,6 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     Optional<Admin> findAdminById(Long AdminId);
     Optional<Admin> findAdminByUniversityIdAndIdNot(Long universityId, Long id);
-
     void deleteById(Long AdminId);
-
-
 
 }

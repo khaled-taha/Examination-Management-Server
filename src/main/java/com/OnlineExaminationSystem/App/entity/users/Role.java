@@ -6,9 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "role", schema = "public")
@@ -26,6 +26,14 @@ public class Role implements Serializable {
     @Column(name = "role")
     @NotBlank
     private String role;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_privilege",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "privilege_id")
+    )
+    private Set<Privilege> privileges;
 
 
 }

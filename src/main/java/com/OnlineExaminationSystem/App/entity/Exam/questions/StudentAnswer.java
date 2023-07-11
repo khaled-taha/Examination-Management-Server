@@ -1,11 +1,16 @@
-package com.OnlineExaminationSystem.App.entity.Exam;
+package com.OnlineExaminationSystem.App.entity.Exam.questions;
 
+import com.OnlineExaminationSystem.App.entity.Exam.ExamAttempt;
+import com.OnlineExaminationSystem.App.entity.Exam.questions.standardQuestion.StandardQuestionAnswer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,6 +18,8 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "studentAnswerType")
 public class StudentAnswer {
 
     @Id
@@ -20,32 +27,26 @@ public class StudentAnswer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_answer_sequence")
     private Long id;
 
-    @ManyToMany
-    @JoinTable(name = "student_answer_question_answer",
-            joinColumns = @JoinColumn(name = "student_answer_id"),
-            inverseJoinColumns = @JoinColumn(name = "question_answer_id"))
-    private List<QuestionAnswer> questionAnswers;
-
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "examAttempt_id")
     @JsonIgnore
     private ExamAttempt examAttempt;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "question_id")
     private Question question;
 
     @Column(name = "score")
     private double points;
 
-    public StudentAnswer(Long id, List<QuestionAnswer> questionAnswers, ExamAttempt examAttempt, Question question, double points) {
-        this.id = id;
-        this.questionAnswers = questionAnswers;
-        this.examAttempt = examAttempt;
-        this.points = points;
-        this.question = question;
-    }
+
+    @JoinColumn(name = "answerCompleteQuestion")
+    private String answerCompleteQuestion;
+
 
     // Getters and setters
+
 
 }

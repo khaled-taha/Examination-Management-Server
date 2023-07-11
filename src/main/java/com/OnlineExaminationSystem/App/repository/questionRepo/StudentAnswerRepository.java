@@ -1,6 +1,6 @@
-package com.OnlineExaminationSystem.App.repository;
+package com.OnlineExaminationSystem.App.repository.questionRepo;
 
-import com.OnlineExaminationSystem.App.entity.Exam.StudentAnswer;
+import com.OnlineExaminationSystem.App.entity.Exam.questions.StudentAnswer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

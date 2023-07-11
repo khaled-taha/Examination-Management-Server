@@ -1,19 +1,20 @@
 package com.OnlineExaminationSystem.App.entity.Exam;
 
+import com.OnlineExaminationSystem.App.entity.Exam.questions.codeQuestion.CodeQuestion;
+import com.OnlineExaminationSystem.App.entity.Exam.questions.standardQuestion.StandardQuestion;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -56,9 +57,18 @@ public class Exam {
     @Column(name = "showResult")
     private boolean showResult;
 
-    @OneToMany(mappedBy = "exam", cascade = CascadeType.ALL)
+    @Column(name = "noCheatingApp")
+    private boolean noCheatingApp;
+
+    @OneToMany(mappedBy = "exam")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private List<Question> questions = new ArrayList<>();
+    private List<StandardQuestion> standardQuestions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "exam")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private List<CodeQuestion> codeProblems = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)

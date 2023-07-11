@@ -23,7 +23,4 @@ public class Admin extends User implements Serializable {
     @Column(name = "specialization")
     @NotBlank
     private String specialization;
-
-
-
 }

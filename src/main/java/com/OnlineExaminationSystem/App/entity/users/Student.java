@@ -1,7 +1,6 @@
 package com.OnlineExaminationSystem.App.entity.users;
 
 import com.OnlineExaminationSystem.App.entity.Exam.Group;
-import com.OnlineExaminationSystem.App.entity.validation.Year;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,4 +21,5 @@ public class Student extends User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "groups_id")
     private Group group;
+
 }

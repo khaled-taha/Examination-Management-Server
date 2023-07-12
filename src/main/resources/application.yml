@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: postgres
-    url: jdbc:postgresql://142.93.192.45:5433/exam-db
+    url: jdbc:postgresql://localhost:5433/exam-db
     database: exam-db
     password: password
     username: postgres
@@ -20,6 +20,18 @@ spring:
   jackson:
     time-zone: Africa/Cairo
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: engineersoftware515@gmail.com
+    password: qjanumcbqvnkeifp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 server:
   servlet:
     context-path: /api
@@ -31,7 +43,4 @@ springdoc:
   swagger-ui:
     path: /api-doc
 
-logging:
-  level:
-    io:
-     jsonwebtoken: DEBUG
+

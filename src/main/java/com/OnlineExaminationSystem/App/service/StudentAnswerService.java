@@ -16,6 +16,10 @@ import com.OnlineExaminationSystem.App.repository.questionRepo.QuestionAnswerRep
 import com.OnlineExaminationSystem.App.repository.questionRepo.StudentAnswerRepository;
 import com.OnlineExaminationSystem.App.repository.questionRepo.codeQuestionRepo.CodeProblemRepository;
 import com.OnlineExaminationSystem.App.repository.questionRepo.codeQuestionRepo.TestCaseRepository;
+import com.OnlineExaminationSystem.App.service.codeService.CodeProvider;
+import com.OnlineExaminationSystem.App.service.codeService.JavaCodeSubmission;
+import com.OnlineExaminationSystem.App.service.codeService.JudgeCode;
+import com.OnlineExaminationSystem.App.service.codeService.PythonCodeSubmission;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,6 +83,8 @@ public class StudentAnswerService {
         }).filter(Objects::nonNull).collect(Collectors.toList());
         studentAnswerRepository.saveAll(studentAnswers);
     }
+    
+    
 
 
     public void saveCompleteStudentAnswer(List<CompleteStudentAnswerDto> answers, long attemptId) {
@@ -120,10 +126,10 @@ public class StudentAnswerService {
 
         if(question.isPresent()){
             ExamAttempt attempt = attemptRepository.findById(attemptId).get();
-            if(language.equalsIgnoreCase("java") || language.equalsIgnoreCase("python")){
-                JavaCodeSubmission codeSubmission =  new JavaCodeSubmission();
-                codeSubmission.judgeJavaCode(code, question.get().getTestCases(),question.get().getTimeLimit());
-                String result = codeSubmission.getSubmissionFlow().toString();
+            JudgeCode judgeCode = CodeProvider.judgeCode(language);
+            judgeCode.judgeCode(code, question.get().getTestCases(),question.get().getTimeLimit());
+
+                String result = judgeCode.getSubmissionFlow().toString();
 
                 // Get CodeStudentAnswer of attemptId
                 StudentAnswer codeStudentAnswer = this.studentAnswerRepository
@@ -137,9 +143,9 @@ public class StudentAnswerService {
 
                 // Create Code Student Answer Object
                 answer.setSubmission(result);
-                answer.setStatus(codeSubmission.getStatus());
-                answer.setPoints(codeSubmission.getPoints());
-                answer.setPassedTestCases(codeSubmission.getPassedTestCases());
+                answer.setStatus(judgeCode.getStatus());
+                answer.setPoints(judgeCode.getPoints());
+                answer.setPassedTestCases(judgeCode.getPassedTestCases());
                 answer.setQuestion(question.get());
                 answer.setCode(code);
                 answer.setExamAttempt(attempt);
@@ -147,11 +153,14 @@ public class StudentAnswerService {
                 // Save the student answer
                 CodeStudentAnswer savedAnswer =  studentAnswerRepository.save(answer);
 
-            }
+            
         }
         assert answer != null;
         return new CodeStatusDto(answer.getStatus(), answer.getSubmission(), answer.getCode());
     }
+
+
+    
 
     public CodeStatusDto getSubmissionStatus(long attemptId, long questionId){
         StudentAnswer codeStudentAnswer = this.studentAnswerRepository

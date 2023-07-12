@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/auth/**").permitAll()
+                .requestMatchers("/recovery/**").permitAll()
                 .requestMatchers("/api-doc", "/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
 
                 .requestMatchers("/admins/add").hasAnyAuthority(PrivilegeConstant.MANAGE_ADMIN)

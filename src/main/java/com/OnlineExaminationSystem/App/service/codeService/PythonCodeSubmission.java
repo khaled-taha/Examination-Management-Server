@@ -1,4 +1,4 @@
-package com.OnlineExaminationSystem.App.service;
+package com.OnlineExaminationSystem.App.service.codeService;
 
 import com.OnlineExaminationSystem.App.entity.Exam.questions.codeQuestion.TestCase;
 import lombok.Data;
@@ -7,37 +7,26 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Data
-public class JavaCodeSubmission {
+public class PythonCodeSubmission extends JudgeCode{
 
-    private short status = -1;
-    private StringBuilder submissionFlow = new StringBuilder();
-    private int passedTestCases = 0;
-    private int counter = 0;
-
-    private int points = 0;
 
     @Transactional
-    public void judgeJavaCode(String code, List<TestCase> testCases, int timeLimit) {
+    @Override
+    public void judgeCode(String code, List<TestCase> testCases, int timeLimit) {
 
         try {
             // Create a temporary directory to store the Java source file
-            Path tempDir = Files.createTempDirectory("java-code");
+            Path tempDir = Files.createTempDirectory("py-code");
 
             // Create the main class file with the provided code
             Path mainClass = createMainClass(tempDir, code);
 
-            // Compile the Java code
-            Process compileProcess = compileCode(tempDir, mainClass);
-            if (compileProcess == null) {
-                // Compilation failed
-                status = 0;
-                return;
-            }
 
             // Loop through the test cases
 
@@ -46,7 +35,6 @@ public class JavaCodeSubmission {
                 // Run the Java code and get the output
                 Process runProcess = runCode(tempDir, testCase.getInput(), testCase.getExpectedOutput(), timeLimit);
                 if (runProcess == null) {
-                    // Runtime error or time limit exceeded
                    continue;
                 }
 
@@ -82,38 +70,14 @@ public class JavaCodeSubmission {
         if (!Files.isDirectory(path)) {
             path = Files.createDirectory(path);
         }
-        Path mainClass = path.resolve("Main.java");
+        Path mainClass = path.resolve("Main.py");
         Files.write(mainClass, code.getBytes());
         return mainClass;
     }
 
-    public  Process compileCode(Path path, Path mainClass) throws IOException, InterruptedException {
-        ProcessBuilder processBuilder = new ProcessBuilder("javac", mainClass.toString());
-        processBuilder.directory(path.toFile());
-        Process process = processBuilder.start();
-
-        // Wait for the compilation process to finish
-        if (process.waitFor() != 0) {
-            String compilationError = readProcessMessage(process.getErrorStream());
-            // Find the index of "Main.java"
-            int startIndex = compilationError.indexOf("Main.java");
-
-            // Check if "Main.java" is found
-            if (startIndex != -1) {
-                // Get the substring starting from "Main.java"
-                submissionFlow.append(compilationError.substring(startIndex));
-            }
-            return null;
-        } else {
-            submissionFlow.append("Code Compiled").append("<br><br>");
-        }
-
-        return process;
-    }
-
     public  Process runCode(Path path, String input, String output, int timeLimit) throws IOException, InterruptedException {
         String runtimeError = "";
-        ProcessBuilder processBuilder = new ProcessBuilder("java", "Main");
+        ProcessBuilder processBuilder = new ProcessBuilder("python", "-u", "Main.py");
         processBuilder.directory(path.toFile());
         Process process = processBuilder.start();
 
@@ -160,5 +124,7 @@ public class JavaCodeSubmission {
                 .map(Path::toFile)
                 .forEach(File::delete);
     }
+
+
 
 }
